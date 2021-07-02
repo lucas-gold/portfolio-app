@@ -92,7 +92,7 @@ function cell (i, j, w){
     this.w = w;
     this.h = w;
 
-    this.revealed = false;
+    this.over = false;
 
     this.firstStage = true;
     this.secondStage = false;
@@ -188,9 +188,9 @@ cell.prototype.contains = function (x, y) {
     return (x > this.x && x < this.x + this.w && y > this.y && y < this.y + this. w )
 }
 
-// cell.prototype.reveal = function () {
-//     this.revealed = true;
-// }
+cell.prototype.endGame = function () {
+    this.over = true;
+}
 cell.prototype.success = function() {
     this.attackSuccess = true;
 }

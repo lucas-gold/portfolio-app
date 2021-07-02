@@ -6,8 +6,6 @@ function make2dArray(cols, rows){
       return arr;
   }
 
-   n = 1500;
-   k = 480;
 
 
 var timeLeftGlobal;
@@ -59,7 +57,7 @@ var timerAmt = 0;
 
     canvas = createCanvas(530, 650);
     canvas.position(542,-40);
-      canvas.parent('cont1');
+      canvas.parent('game');
       canvas.style("display", "block");
 
         bgScene = createImg('images/bgFarm.png', 'background');
@@ -108,11 +106,10 @@ var timerAmt = 0;
   function gameover(){
       for (var i = 0; i < numcol; i++) {
           for (var j = 0; j< numrow; j++){
-             grid[i][j].revealed = true;
+             grid[i][j].over = true;
           }
       }
-      lose = true;
-
+      loseGame = true;
   }
 
 

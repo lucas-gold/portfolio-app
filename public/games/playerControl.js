@@ -241,7 +241,7 @@ var successAttack = false;
     }
 
     if (keyCode === 71) { //g
-      
+
     }
 
     if (keyCode === 69 && timerActive === true && timeLeftGlobal >= 3) {

@@ -14,7 +14,7 @@ var avatar_pour_left; var avatar_pour_right; var avatar_pour_up; var avatar_pour
 
 //sketch.js
 var canvas;
-var lose = false;
+var loseGame = false;
 var start = false;
 
 
@@ -27,18 +27,16 @@ var exitXpos; //enemy starting x
 var exitYpos; //enemy starting y
 
 
-var m = screen.width;
 
 var grid;
+var m = screen.width;
 var w = 43.5;
+
 var numcol;
 var numrow;
 
 
 var numPresses;
-
-
-var totalbees;
 
 var myDiv;
 var timerDiv;
