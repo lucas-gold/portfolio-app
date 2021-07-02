@@ -1,38 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* CSS for title in "Projects" page incl. media queries */
+
+.projecttitle:hover {
+  color: #cd9cf2 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.projecttitle {
+  margin-left: 85%;
+  margin-top: 90px;
+  font-family: "Carter One";
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 135px;
+  color:white;
+  transition: color 1s ease-in-out;
+  top: 0;
+  bottom: 0;
+
+}
+@media(max-height:745px) {
+  .projecttitle {
+    font-size: 125px;
+  }
+}
+@media(max-height:695px) {
+  .projecttitle {
+    font-size: 105px;
+  }
+}
+@media(max-height:600px) {
+  .projecttitle {
+    writing-mode: horizontal-tb;
+    margin-left: 32%;
+    margin-top: -35px;
+    font-size: 115px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@media(max-width:1200px) {
+  .projecttitle {
+    writing-mode: horizontal-tb;
+    font-size: 115px;
+    margin-left: 350px;
+    margin-top: -35px;
+  }
+}
+@media(max-width:1040px) {
+  .projecttitle {
+    margin-left: 300px;
+    margin-top: -35px;
+  }
+}
+@media(max-width:980px) {
+  .projecttitle {
+    font-size: 100px;
+    margin-left: 250px;
+    margin-top: -25px;
+  }
+}
+
+@media(max-width:780px) {
+  .projecttitle {
+    font-size: 50px;
+    margin-left: 300px;
+    margin-top: 20px;
+  }
+}
+@media(max-width:630px) {
+  .projecttitle {
+    font-size: 40px;
+    margin-left: 280px;
+  }
+}
+@media(max-width:540px) {
+  .projecttitle {
+    font-size: 40px;
+    margin-left: 220px;
+  }
+}
+@media(max-width:450px) {
+  .projecttitle {
+    font-size: 30px;
+    margin-left: 240px;
+  }
+}
+
+
+/* CSS for title in "Experience" page incl. media queries */
+
+.exptitle:hover {
+  color: #cd9cf2 !important;
+}
+
+.exptitle {
+
+  font-family: "Carter One";
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 105px;
+  color:white;
+  transition: color 1s ease-in-out;
+  position:absolute;
+  left:93%;
+  right:3%;
+  top:70px;
+
+}
+
+@media(max-height:725px) {
+  .exptitle {
+    font-size: 95px;
+  }
+}
+@media(max-height:640px) {
+  .exptitle {
+    writing-mode: horizontal-tb;
+    margin-left: 14%;
+    margin-top: -90px;
+    font-size: 65px;
+  }
+}
+
+@media(max-width:1200px) {
+  .exptitle {
+    writing-mode: horizontal-tb;
+    font-size: 65px;
+    left:200px;
+    right:0;
+    top:1%;
+  }
+}
+@media(max-width:1065px) {
+  .exptitle {
+    font-size: 55px;
+  }
+}
+@media(max-width:700px) {
+  .exptitle {
+    font-size: 50px;
+  }
+}
+@media(max-width:510px) {
+  .exptitle {
+    font-size: 30px;
+  }
+}
+
+
+/* CSS for home page elements */
+
+.myname {
+  position:absolute;
+  text-align:right;
+  font-family: 'Carter One';
+  color:white;
+  font-size:145px;
+  margin-right:50px;
+  -webkit-margin-start:-60px;
+  margin-top:80px;
+  transition: color 1s ease-in-out;
+  top: 0;
+
+}
+
+.myname:hover {
+  color: #cd9cf2 !important;
+}
+
+
+.button-container div {
+  content:url("./portfolio-button.svg");
+  background: #f7f2ff;
+  border-radius: 30px;
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  margin-left: 650px;
+  margin-right: auto;
+  padding: 2px 25px 9px 15px;
+  cursor:pointer;
+}
+
+.button-container div:hover {
+  background: white;
+
+
+}
+
+.intro-container {
+  text-align: center;
+  margin-left: 35%;
+  margin-right: 35%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top:-50px;
+  font-family: 'Montserrat', sans-serif;
+  color: #7b11bd;
+  background-color: white;
+  border-radius: 25px;
+  padding: 0.9%;
+  transition: color 0.5s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+.intro-container:hover {
+  color: #47146e;
+  -webkit-box-shadow: 0 0 10px #7b11bd;
+  box-shadow: 0 0 10px #7b11bd;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.profile-container div {
+  margin: 125px;
+  content:url("./me-profile.png");
+  background: #7b11bd;
+  border-radius: 50%;
+  width: 320px;
+  height: 345px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  cursor:pointer;
+}
+
+/*CSS for Program circle */
+
+.border-container div {
+  content:url("./programborder2.png");
+  border-radius: 50%;
+  margin-left: 400px;
+  margin-top: -37.5px;
+  position: absolute;
+}
+
+#tsparticles {
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 438px;
+  position: absolute;
+  width: 575px;
+  height: 575px;
+  z-index: 1;
+}
+
+/* CSS for text on "Experience" page */
+.left, .right {
+  width: 460px;
+  margin-top: 70px;
+  text-align:justify;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-style:normal;
   }
-  to {
-    transform: rotate(360deg);
+.left {float: left;
+      margin-left:205px}
+.right {float: left;
+      margin-left: 100px}
+
+.left:before, .right:before {
+    content: "";
+    width: 300px;
+    height: 600px;
+}
+.left:before {
+    float: right;
+    shape-outside: circle(farthest-side at right);
+}
+.right:before {
+    float: left;
+    shape-outside: circle(farthest-side at left);
+}
+
+/*
+      MEDIA QUERIES
+*/
+
+@media(min-width:1600px) {
+  .border-container div {
+    margin-left: 545px;
+  }
+  #tsparticles {
+    margin-left: 582px;
+  }
+  .left {
+    margin-left: 350px;
+  }
+  .button-container {
+    margin-left: 150px;
+  }
+}
+@media(min-width:1800px) {
+  .border-container div {
+    margin-left: 645px;
+  }
+  #tsparticles {
+    margin-left: 682px;
+  }
+  .left {
+    margin-left: 450px;
+  }
+  .button-container {
+    margin-left: 250px;
+  }
+}
+
+
+@media(max-width:1290px) {
+
+  .myname {
+    font-family: 'Carter One';
+    color:white;
+    font-size:110px;
+    margin-top:120px;
+    margin-right:20px;
+  }
+  .intro-container {
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+}
+
+@media(max-width:1080px) {
+  .profile-container div {
+    width: 270px;
+    height: auto;
+  }
+  .myname {
+    font-family: 'Carter One';
+    color:white;
+    font-size:70px;
+    margin-top:120px;
+    margin-right:20px;
+  }
+  .intro-container {
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+}
+
+@media(max-width:780px) {
+  .profile-container div {
+    margin-left: 50%;
+    width: 40%;
+    height: auto;
+  }
+
+  .myname {
+    position:relative;
+    text-align:center;
+    font-family: 'Carter One';
+    color:white;
+    font-size:62px;
+    margin-right: 14%;
+  }
+
+  .intro-container {
+    margin-left: 45%;
+    margin-right: 5%;
+    bottom: 150%;
+  }
+}
+
+@media(max-width:455px) {
+  .profile-container div {
+    margin-left: 55%;
+    width: 40%;
+    height: auto;
+  }
+
+  .myname {
+    position:relative;
+    text-align:center;
+    font-family: 'Carter One';
+    color:white;
+    font-size:55px;
+    margin-right: 2%;
+  }
+
+
+
+  .intro-container {
+    margin-left: 5%;
+    margin-right: 5%;
   }
 }
