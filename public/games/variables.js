@@ -20,7 +20,6 @@ var start = false;
 
 var walkXpos; //enemy starting x
 var walkYpos; //enemy starting y
-var enemyWalkPos1 = false; var enemyWalkPos2 = false; var enemyWalkPos3 = false; var enemyWalkPos4 = false;
 
 var enemyExit;
 var exitXpos; //enemy starting x
@@ -30,7 +29,8 @@ var exitYpos; //enemy starting y
 
 var grid;
 var m = screen.width;
-var w = 43.5;
+//var w = 43.5;
+var w = 29;
 
 var numcol;
 var numrow;

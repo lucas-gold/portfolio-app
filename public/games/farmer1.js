@@ -1,15 +1,23 @@
-function make2dArray(cols, rows){
-      var arr = new Array(cols);
-      for (var i = 0; i< arr.length; i++) {
-          arr[i] = new Array(rows);
-    }
-      return arr;
-  }
-
-
-
-
 var timeLeftGlobal;
+
+
+var walkXpos; //enemy starting x
+var walkYpos; //enemy starting y
+
+var enemyExit;
+var exitXpos; //enemy starting x
+var exitYpos; //enemy starting y
+
+var timerActive = false
+
+var walk = false;
+var atkBool = false;
+var firstAtk = false;
+var tid;
+var tidClick;
+
+var myDiv;
+var timerDiv;
 
 var timerAmt = 0;
 
@@ -57,20 +65,6 @@ var timerAmt = 0;
 //****SETUP****
   function setup(){
 
-    canvas = createCanvas(530, 685);
-    canvas.position(538,-43);
-      canvas.parent('game');
-      canvas.style("display", "block");
-
-        bgScene = createImg('images/bgFarm.png', 'background');
-        bgScene.position(0,0);
-        bgScene.style('z-index', '-10');
-        bgScene.style('margin-top', '10px');
-        bgScene.style('margin-left', '212px');
-        bgScene.style('width','980px'); //change to percentage
-
-
-
 //attacker div
   myDivWalk = createImg('images/axewalkL.gif', 'walking');
   myDivWalk.size(60,55);
@@ -89,37 +83,8 @@ var timerAmt = 0;
   //use createDiv to make a sidebar with seed count etc
 
 
-
-      //numcol = 15;
-      //numcol = 24;
-      numcol = 36;
-      //numrow = 13;
-    //  numrow = 19;
-    numrow = 21;
-
-
-
-      grid = make2dArray(numcol, numrow);
-
-      for (var i = 0; i < numcol; i++) {
-          for (var j = 0; j < numrow; j++){
-              grid[i][j] = new cell(i, j, w);
-          }
-      }
-
   }
 
-  function gameover(){
-      for (var i = 0; i < numcol; i++) {
-          for (var j = 0; j< numrow; j++){
-             grid[i][j].over = true;
-          }
-      }
-      loseGame = true;
-  }
-
-
-  //var attackTrue = false;
 
   var randPosGlobal = 0;
   var addedYtime = 0;
@@ -221,13 +186,9 @@ var lessY = false;
 
 var pause = false;
 
+//call enemyMove from draw function
+  function enemyMove() {
 
-  function draw() {
-
-    //for square highlight
-      //stroke(20);
-      //fill('#8bbaea');
-    //rect(this.x, this.y, this.w, this.h); //remove this
 
 
     if (document.hasFocus() == false) {
@@ -237,45 +198,7 @@ var pause = false;
       pause = false;
     }
 
-    //screen barriers for player
-    if (avatarX < 550) {
-      avatarX = 552;
-    }
-    else if (avatarX > 1137) {
-      avatarX = 1135;
-    }
-    if (avatarY < 15) {
-      avatarY = 17;
-    }
 
-    // if (avatarX >= walkXpos && avatarX <= walkXpos+20) {
-    //   avatarX = walkXpos-20;
-    //   avatar_pour_defaultL.hide();
-    //   carryDirection = "right";
-    // }
-
-       for (var i = 0; i < numcol; i++) {
-          for (var j = 0; j< numrow; j++){
-            //if (i != 2 && i != 3 && i != 6 && i != 7 && j != 2 && j != 5 && j != 6 && j != 9) {
-            if (i != 3 && i != 4 && i != 5 && i != 9 && i != 10 && i != 11 && j != 3 && j != 4 && j != 8 && j != 9 && j != 10 && j != 14 && j != 15) {
-
-              grid[i][j].show();
-            }
-
-
-              // if (grid[i][j].contains(mouseX+32, mouseY+30))
-              // {
-              //     if (mouseIsPressed) {
-              //       image(wcPour,mouseX,mouseY,44,44);
-              //
-              //     }
-              //     else {
-              //       image(wc,mouseX,mouseY,32,28);
-              //     }
-              // }
-
-          }
-      }
 
   if (pause == false) {
 
@@ -323,11 +246,7 @@ var pause = false;
 
   }
   else if (atkBool == true && walkXpos <= fullyGrownArray[randPosGlobal].xPos) {
-    //if (walkYpos >= fullyGrownArray[randPosGlobal].yPos){
-    //  walkXpos+=2;
-    //  walkYpos-=2;
-    //}
-    //else {
+
     walkXpos+=2;
     console.log('extra-x')
     //}
@@ -359,23 +278,6 @@ var pause = false;
 
     is_walkYpos_height375_complete = false;
   }
-
-
-
-
-
-  // else if (atkBool == true && timerActive == false){ //doesnt work upon restart of attacker for upper y's
-  //   is_walkYpos_height125_complete = false;
-  //
-  //   is_walkYpos_height200_complete = false;
-  //
-  //   is_walkYpos_height375_complete = false;
-  //
-  //   lessY = false;
-  //
-  //   console.log(walkYpos)
-  //
-  // }
 
 
 
@@ -433,81 +335,6 @@ var pause = false;
 
 
 
-
-
-
-
   if (walk == true || atkBool == false) {
     myDiv.hide();
-  }
-
-
-
-
-
-
-      // myDivWalk.position(walkXpos, walkYpos);
-      // walkXpos++;
-      //
-      //
-      //
-      // if (walkXpos > 550) {
-      //   myDivWalk.hide();
-      //   myDiv.show();
-      //
-      //
-      //   walk = false;
-      //   walkXpos = 350;
-      //   walkYpos = 100;
-      // }
-      // else if (walkXpos == 1){ //for "attack"ing enemy mid walk
-      //   myDivWalk.hide();
-      //   myDiv.hide();
-      //
-      // }
-      // if (walk == true || atkBool == false) {
-      //   myDiv.hide();
-      // }
-
-
-
-
-
-//bear avatar movement
-      avatar_walk_right.hide();
-      avatar_walk_up.hide();
-      avatar_walk_left.hide();
-      avatar_walk_down.hide();
-
-      avatar_carry_right.hide();
-      avatar_carry_up.hide();
-      avatar_carry_left.hide();
-      avatar_carry_down.hide();
-
-      if (waterCan == false) {
-        avatar_carry_defaultL.hide();
-        avatar_carry_defaultR.hide();
-        avatarMove(avatar_walk_right, avatar_walk_left, avatar_walk_up, avatar_walk_down, avatar_default, avatar_default, moveSpeed, extraXdef, extraYdef, avatar_pour_defaultL, avatar_pour_defaultR, avatar_pour_left, avatar_pour_right, avatar_pour_up, avatar_pour_down); }
-      else {
-        avatar_default.hide();
-        avatarMove(avatar_carry_right, avatar_carry_left, avatar_carry_up, avatar_carry_down, avatar_carry_defaultL, avatar_carry_defaultR, moveSpeed_can, extraXcarry, extraYcarry, avatar_pour_defaultL, avatar_pour_defaultR, avatar_pour_left, avatar_pour_right, avatar_pour_up, avatar_pour_down);
-        // if (waterCanActive == true ) {
-        //   avatar_default.hide();
-        //
-        //   avatarMove(avatar_carry_pour, avatar_carry_left, avatar_carry_up, avatar_carry_down, avatar_carry_pour, moveSpeed_can, extraYcarry);
-        // }
-      }
-
-
-    }
-
-  }
-
-  //make game only play once start is selected
-  //add score counter
-
-
-function storeCoordinate(xVal, yVal, array) {
-      //array.push({x: xVal, y: yVal, xPos: 615+(xVal*43), yPos: 75+(yVal*43)});
-      array.push({x: xVal, y: yVal, xPos: 615+(xVal*28), yPos: 75+(yVal*28)});
   }

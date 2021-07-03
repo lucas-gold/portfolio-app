@@ -219,26 +219,54 @@ var successAttack = false;
     }
 
     //water tree
+    // if (keyCode == 86 && waterCan == true) { //set to V for now but set to 32=spacebar once sizes are fixed
+    //   for (var i = 0; i < numcol; i++) {
+    //    for (var j = 0; j < numrow; j++){
+    //      //if (i != 16 && i != 17 && i != 20 && i != 21 && j != 3 && j != 6 && j != 7 && j != 10) {
+    //      if (i != 3 && i != 4 && i != 5 && i != 9 && i != 10 && i != 11 && j != 3 && j != 4 && j != 8 && j != 9 && j != 10 && j != 14 && j != 15) {
+    //      //if (i != 23 && i != 24 && i != 25 && i !=  && i != 10 && i != 11 && j != 3 && j != 4 && j != 8 && j != 9 && j != 10 && j != 14 && j != 15) {
+    //      //console.log(grid[i][j].y)
+    //      //console.log(avatarY)
+    //
+    //      if (grid[i][j].contains(avatarX-235, avatarY-10)) {
+    //        console.log("yesin");
+    //          grid[i-13][j-2].fifth(); //change from fifth. use timer to increment
+    //          storeCoordinate(i,j,fullyGrownArray);
+    //          console.log(fullyGrownArray[0].x);
+    //          if (firstAtk == false) {attacker(); }//only activate on if statement condition
+    //
+    //      }
+    //   }
+    //  }
+    //  }
+    //   waterCanActive = true;
+    // }
+    // else {
+    //   waterCanActive = false;
+    // }
+
     if (keyCode == 86 && waterCan == true) { //set to V for now but set to 32=spacebar once sizes are fixed
-      for (var i = 14; i < numcol; i++) {
-       for (var j = 1; j < numrow; j++){
-         if (i != 16 && i != 17 && i != 20 && i != 21 && j != 3 && j != 6 && j != 7 && j != 10) {
+   for (var i = 21; i < numcol; i++) {
+    for (var j = 2; j < numrow; j++){
+    if (i != 24 && i != 25 && i != 26 && i != 30 && i != 31 && i != 32 && j != 5 && j != 6 && j != 10 && j != 11 && j != 12 && j != 16 && j != 17) {
+    //if (i != 23 && i != 17 && i != 20 && i != 21 && j != 3 && j != 6 && j != 7 && j != 10) {
 
-         if (grid[i][j].contains(avatarX-10, avatarY-10)) {
+      if (grid[i][j].contains(avatarX-10, avatarY-10)) {
 
-             grid[i-14][j-1].fifth(); //change from fifth. use timer to increment
-             storeCoordinate(i-14,j-1,fullyGrownArray);
-             if (firstAtk == false) {attacker(); }//only activate on if statement condition
+          grid[i-21][j-2].fifth(); //change from fifth. use timer to increment
+          storeCoordinate(i-21,j-2,fullyGrownArray);
+          if (firstAtk == false) {attacker(); }//only activate on if statement condition
 
-         }
-       }
-     }
-     }
-      waterCanActive = true;
+      }
     }
-    else {
-      waterCanActive = false;
-    }
+  }
+  }
+   waterCanActive = true;
+ }
+ else {
+   waterCanActive = false;
+ }
+
 
     if (keyCode === 71) { //g
 

@@ -87,6 +87,7 @@ function preload() {
 
 function cell (i, j, w){
 
+
     this.x = i*w;
     this.y = j*w;
     this.w = w;
@@ -140,7 +141,6 @@ cell.prototype.show = function() {
   }
   if (this.fifthStage) {
     //backgroundImg(this.x,this.y,this.w,this.h);
-
     image(stg5, this.x+100, this.y+135, 28, 28);
 
   }
