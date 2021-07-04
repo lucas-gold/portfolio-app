@@ -207,6 +207,77 @@
 
 var successAttack = false;
 
+function timerPlants(stage, time, i, j) {
+  grid[i][j].plantTimer = true;
+
+  var timeLeft = time;
+
+  var downTimer = setInterval(function() {
+
+    timeLeft = timeLeft - 1;
+    if (timeLeft <= 0){
+      grid[i][j].plantTimer = false;
+      clearInterval(downTimer);
+
+      if (stage === 1) {
+        //enemies wont be a problem because this stage wont be attacked at first
+        grid[i][j].second();
+        grid[i][j].stg2bool = true;
+      }
+      else if (stage === 2) {
+        //enemies wont be a problem because this stage wont be attacked at first
+        grid[i][j].third();
+        grid[i][j].stg3bool = true;
+      }
+      else if (stage === 3) {
+        //enemies wont be a problem because this stage wont be attacked at first
+        grid[i][j].fourth();
+        grid[i][j].stg4bool = true;
+      }
+
+
+
+
+    }
+  }, 1000);
+
+}
+
+
+function plantStage(i, j) {
+  if (grid[i][j].stg1bool == false) {
+    grid[i][j].first(); //stg1
+    storeCoordinate(i,j,fullyGrownArray); //instead of storing coordinate here, do it after grid[i][j] activates final stage in timer function
+    grid[i][j].stg1bool = true;
+  }
+
+  else if (grid[i][j].stg1wbool == false && grid[i][j].plantTimer === false) {
+    grid[i][j].firstWet();
+    //storeCoordinate(i,j,fullyGrownArray);
+    grid[i][j].stg1wbool = true;
+    timerPlants(1, 6, i, j);
+  }
+
+  else if (grid[i][j].stg2wbool == false && grid[i][j].plantTimer === false) {
+    grid[i][j].secondWet();
+    //storeCoordinate(i,j,fullyGrownArray);
+    grid[i][j].stg2wbool = true;
+    timerPlants(2, 6, i, j);
+  }
+
+  else if (grid[i][j].stg3wbool == false && grid[i][j].plantTimer === false) {
+    grid[i][j].thirdWet();
+    //storeCoordinate(i,j,fullyGrownArray);
+    grid[i][j].stg3wbool = true;
+    timerPlants(3, 6, i, j);
+  }
+
+
+
+
+
+
+}
 
 
   function keyPressed() {
@@ -252,9 +323,10 @@ var successAttack = false;
     //if (i != 23 && i != 17 && i != 20 && i != 21 && j != 3 && j != 6 && j != 7 && j != 10) {
 
       if (grid[i][j].contains(avatarX-10, avatarY-10)) {
+          plantStage(i-21,j-2);
 
-          grid[i-21][j-2].fifth(); //change from fifth. use timer to increment
-          storeCoordinate(i-21,j-2,fullyGrownArray);
+          //grid[i-21][j-2].second(); //change from fifth. use timer to increment
+          //storeCoordinate(i-21,j-2,fullyGrownArray);
           if (firstAtk == false) {attacker(); }//only activate on if statement condition
 
       }

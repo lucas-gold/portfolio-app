@@ -1,14 +1,22 @@
 function preload() {
 
+  stg0 = loadImage('images/crop_stg0_v3.png');
+  pumpkin_stg1 = loadImage('images/pumpkin_stg1.png');
+  pumpkin_stg1_w = loadImage('images/pumpkin_stg1_w3.png');
+  pumpkin_stg2 = loadImage('images/pumpkin_stg2.png');
+  pumpkin_stg2_w = loadImage('images/pumpkin_stg2_w2.png');
+  pumpkin_stg3 = loadImage('images/pumpkin_stg3.png');
+  pumpkin_stg3_w = loadImage('images/pumpkin_stg3_w.png');
+  pumpkin_stg4 = loadImage('images/pumpkin_stg4.png');
 
-  stg1 = loadImage('images/crop_stg0_v3.png');
-  stg2 = loadImage('images/stage2copy.png');
-  stg3 = loadImage('images/stage4.png');
-  stg4 = loadImage('images/stage4.png');
-  stg5 = loadImage('images/pumpkin_stg1.png');
-  stg6 = loadImage('images/stage6.png');
-  stg7 = loadImage('images/stage7.png');
-  stg8 = loadImage('images/stage8new.png');
+  // stg1 = loadImage('images/crop_stg0_v3.png');
+  // stg2 = loadImage('images/pumpkin_stg1.png');
+  // stg3 = loadImage('images/pumpkin_stg1_w3.png');
+  // stg4 = loadImage('images/pumpkin_stg5.png');
+  // stg5 = loadImage('images/pumpkin_stg1.png');
+  // stg6 = loadImage('images/stage6.png');
+  // stg7 = loadImage('images/stage7.png');
+  // stg8 = loadImage('images/stage8new.png');
 
   wc = loadImage('images/watercan1.png');
   wcPour = loadImage('images/watercan2.png');
@@ -93,19 +101,32 @@ function cell (i, j, w){
     this.w = w;
     this.h = w;
 
+    this.plantTimer = false;
+
     this.over = false;
 
-    this.firstStage = true;
+    this.defaultStage = true;
+    this.firstStage = false;
+    this.firstWetStage = false;
     this.secondStage = false;
+    this.secondWetStage = false;
     this.thirdStage = false;
-    this.fourthStage = false;
-    this.fifthStage = false;
-    this.sixthStage = false;
+    this.thirdWetStage = false;
+    this.fourthStage = false
 
     this.attackStage = false;
 
     this.attackSuccess = false;
     this.attackFailed = false;
+
+    this.stg1bool = false;
+    this.stg1wbool = false;
+    this.stg2bool = false;
+    this.stg2wbool = false;
+    this.stg3bool = false;
+    this.stg3wbool = false;
+    this.stg4bool = false;
+
 //  }
 
 }
@@ -115,54 +136,58 @@ function cell (i, j, w){
 cell.prototype.show = function() {
 
 
-  if (this.firstStage) {
+  if (this.defaultStage) {
     //backgroundImg(this.x,this.y,this.w,this.h);
 
   //  stage1 = createImg('images/stage1copy2.png', 'stg1');
     //stage1.position(this.x+610,this.y+90);
     //stage1.size(35,35);
-      image(stg1, this.x+100, this.y+135, 28, 28);
+      image(stg0, this.x+100, this.y+135, 28, 28);
 
 
 
     }
-  if (this.secondStage) {
+  if (this.firstStage) { //stg 1 no water
     //backgroundImg(this.x,this.y,this.w,this.h);
 
-    image(stg2, this.x+100, this.y+135, 32, 32);
+    image(pumpkin_stg1, this.x+100, this.y+135, 32, 32);
   }
 
-  if (this.thirdStage) {
+  if (this.firstWetStage) { //stg 1 watered
+
+    image(pumpkin_stg1_w, this.x+100, this.y+135, 32, 32);
 
 
   //  image(stg3, this.x+103, this.y+125, 30, 30);
   }
-  if (this.fourthStage) {
+  if (this.secondStage) {
+    image(pumpkin_stg2, this.x+100, this.y+135, 32, 32);
+
   }
-  if (this.fifthStage) {
+  if (this.secondWetStage) {
     //backgroundImg(this.x,this.y,this.w,this.h);
-    image(stg5, this.x+100, this.y+135, 28, 28);
+    image(pumpkin_stg2_w, this.x+100, this.y+135, 32, 32);
 
   }
-  if (this.sixthStage) {
+  if (this.thirdStage) {
     //backgroundImg(this.x,this.y,this.w,this.h);
 
-    image(stg6, this.x+90, this.y+75, 50, 80);
+    image(pumpkin_stg3, this.x+100, this.y+135, 32, 32);
 
   }
-  if (this.seventhStage) {
+  if (this.thirdWetStage) {
   //  backgroundImg(this.x,this.y,this.w,this.h);
 
-  image(stg2, this.x+100, this.y+135, 15, 15); //make img1 include brown dirt surrounding it
+  image(pumpkin_stg3_w, this.x+100, this.y+135, 32, 32); //make img1 include brown dirt surrounding it
 
   //  image(stg7, this.x+80, this.y+40, 70, 120);
   }
-  if (this.eighthStage) {
+  if (this.fourthStage) {
     //image(img1, this.x, this.y, this.w, this.w);
     //backgroundImg(this.x,this.y,this.w,this.h);
 
-    image(stg8, this.x+80, this.y+40, 70, 120);
-  }
+    image(pumpkin_stg4, this.x+100, this.y+135, 32, 32);
+}
 
 
 
@@ -202,27 +227,27 @@ cell.prototype.attack = function() {
 }
 
 
+cell.prototype.default = function() {
+    this.defaultStage = true;
+}
 cell.prototype.first = function() {
     this.firstStage = true;
+}
+cell.prototype.firstWet = function() {
+    this.firstWetStage = true;
 }
 cell.prototype.second = function() {
     this.secondStage = true;
 }
+cell.prototype.secondWet = function() {
+    this.secondWetStage = true;
+}
 cell.prototype.third = function() {
     this.thirdStage = true;
 }
+cell.prototype.thirdWet = function() {
+    this.thirdWetStage = true;
+}
 cell.prototype.fourth = function() {
     this.fourthStage = true;
-}
-cell.prototype.fifth = function() {
-    this.fifthStage = true;
-}
-cell.prototype.sixth = function() {
-    this.sixthStage = true;
-}
-cell.prototype.seventh = function() {
-    this.seventhStage = true;
-}
-cell.prototype.eighth = function() {
-    this.eighthStage = true;
 }

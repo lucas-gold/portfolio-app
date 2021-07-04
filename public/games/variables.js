@@ -3,6 +3,8 @@ var img1; var img2; var img3; var img4; var img5; var img6;
 var stg1; var stg2; var stg3; var stg4; var wc; var wcPour;
 var picA;
 
+var stg0; var pumpkin_stg1; var pumpkin_stg1_w; var pumpkin_stg2; var pumpkin_stg2_w; var pumpkin_stg3; var pumpkin_stg3_w; 
+
 var avatar_walk_down; var avatar_walk_up; var avatar_walk_left; var avatar_walk_right; var avatar_default;
 
 var avatar_carry_left; var avatar_carry_right; var avatar_carry_down; var avatar_carry_up; var avatar_carry_defaultL; var avatar_carry_defaultR;
