@@ -8,7 +8,6 @@ function make2dArray(cols, rows){
 
 
 
-
 var timeLeftGlobal;
 
 var timerAmt = 0;
@@ -22,7 +21,7 @@ var timerAmt = 0;
 
     var downTimer = setInterval(function() {
 
-    if (pause == false) {
+    if (pause == false && pausePressed == false) {
       timeLeft = timeLeft-1;
     }
 
@@ -220,6 +219,7 @@ var is_walkYpos_heightRand_complete = false;
 var lessY = false;
 
 var pause = false;
+var pausePressed = false;
 
 
   function draw() {
@@ -277,7 +277,7 @@ var pause = false;
           }
       }
 
-  if (pause == false) {
+  if (pause == false && pausePressed == false) {
 
 //walk in for lumberjacks
   myDivWalk.position(walkXpos, walkYpos);

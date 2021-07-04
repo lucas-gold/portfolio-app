@@ -6,8 +6,11 @@ function preload() {
   pumpkin_stg2 = loadImage('images/pumpkin_stg2.png');
   pumpkin_stg2_w = loadImage('images/pumpkin_stg2_w2.png');
   pumpkin_stg3 = loadImage('images/pumpkin_stg3.png');
-  pumpkin_stg3_w = loadImage('images/pumpkin_stg3_w.png');
+  pumpkin_stg3_w = loadImage('images/pumpkin_stg3_w2.png');
   pumpkin_stg4 = loadImage('images/pumpkin_stg4.png');
+  pumpkin_stg4_w = loadImage('images/pumpkin_stg4_w.png');
+  pumpkin_stg5 = loadImage('images/pumpkin_stg5.png');
+
 
   // stg1 = loadImage('images/crop_stg0_v3.png');
   // stg2 = loadImage('images/pumpkin_stg1.png');
@@ -113,6 +116,7 @@ function cell (i, j, w){
     this.thirdStage = false;
     this.thirdWetStage = false;
     this.fourthStage = false
+    this.fourthWetStage = false;
 
     this.attackStage = false;
 
@@ -121,11 +125,9 @@ function cell (i, j, w){
 
     this.stg1bool = false;
     this.stg1wbool = false;
-    this.stg2bool = false;
     this.stg2wbool = false;
-    this.stg3bool = false;
     this.stg3wbool = false;
-    this.stg4bool = false;
+    this.stg4wbool = false;
 
 //  }
 
@@ -188,17 +190,27 @@ cell.prototype.show = function() {
 
     image(pumpkin_stg4, this.x+100, this.y+135, 32, 32);
 }
+if (this.fourthWetStage) {
+
+  image(pumpkin_stg4_w, this.x+100, this.y+135, 32, 32);
+}
+if (this.fifthStage) {
+
+  image(pumpkin_stg5, this.x+100, this.y+135, 32, 32);
+}
 
 
 
 
   if (this.attackStage) {
+
   //  image(img6, this.x, this.y, this.w/2, this.w/2);
     //myDiv.show();
   }
   if (this.attackSuccess) {
     console.log("success");
     myDiv.hide();
+
     this.attackSuccess = false;
   }
   if (this.attackFailed) {
@@ -250,4 +262,10 @@ cell.prototype.thirdWet = function() {
 }
 cell.prototype.fourth = function() {
     this.fourthStage = true;
+}
+cell.prototype.fourthWet = function() {
+    this.fourthWetStage = true;
+}
+cell.prototype.fifth = function() {
+    this.fifthStage = true;
 }

@@ -222,17 +222,20 @@ function timerPlants(stage, time, i, j) {
       if (stage === 1) {
         //enemies wont be a problem because this stage wont be attacked at first
         grid[i][j].second();
-        grid[i][j].stg2bool = true;
       }
       else if (stage === 2) {
         //enemies wont be a problem because this stage wont be attacked at first
         grid[i][j].third();
-        grid[i][j].stg3bool = true;
       }
       else if (stage === 3) {
         //enemies wont be a problem because this stage wont be attacked at first
         grid[i][j].fourth();
-        grid[i][j].stg4bool = true;
+      }
+      else if (stage === 4) {
+        //enemies wont be a problem because this stage wont be attacked at first
+        grid[i][j].fifth();
+        storeCoordinate(i,j,fullyGrownArray); //instead of storing coordinate here, do it after grid[i][j] activates final stage in timer function
+
       }
 
 
@@ -245,13 +248,9 @@ function timerPlants(stage, time, i, j) {
 
 
 function plantStage(i, j) {
-  if (grid[i][j].stg1bool == false) {
-    grid[i][j].first(); //stg1
-    storeCoordinate(i,j,fullyGrownArray); //instead of storing coordinate here, do it after grid[i][j] activates final stage in timer function
-    grid[i][j].stg1bool = true;
-  }
 
-  else if (grid[i][j].stg1wbool == false && grid[i][j].plantTimer === false) {
+if (grid[i][j].stg1bool == true) {
+   if (grid[i][j].stg1wbool == false && grid[i][j].plantTimer === false) {
     grid[i][j].firstWet();
     //storeCoordinate(i,j,fullyGrownArray);
     grid[i][j].stg1wbool = true;
@@ -271,6 +270,13 @@ function plantStage(i, j) {
     grid[i][j].stg3wbool = true;
     timerPlants(3, 6, i, j);
   }
+  else if (grid[i][j].stg4wbool == false && grid[i][j].plantTimer === false) {
+    grid[i][j].fourthWet();
+    //storeCoordinate(i,j,fullyGrownArray);
+    grid[i][j].stg4wbool = true;
+    timerPlants(4, 6, i, j);
+  }
+}
 
 
 
@@ -282,11 +288,16 @@ function plantStage(i, j) {
 
   function keyPressed() {
 
-    if (keyCode == 80) {
-      pause = true;
+    if (keyCode == 80) { //p
+      pausePressed = true;
     }
-    if (keyCode == 79) {
-      pause = false;
+    if (keyCode == 79) { //o
+      pausePressed = false;
+    }
+
+    //plant seed
+    if (keyCode === 71) { //g
+
     }
 
     //water tree
@@ -316,14 +327,21 @@ function plantStage(i, j) {
     //   waterCanActive = false;
     // }
 
-    if (keyCode == 86 && waterCan == true) { //set to V for now but set to 32=spacebar once sizes are fixed
+    if ((keyCode == 86 && waterCan == true) || keyCode == 71) { //set to V for now but set to 32=spacebar once sizes are fixed
    for (var i = 21; i < numcol; i++) {
     for (var j = 2; j < numrow; j++){
     if (i != 24 && i != 25 && i != 26 && i != 30 && i != 31 && i != 32 && j != 5 && j != 6 && j != 10 && j != 11 && j != 12 && j != 16 && j != 17) {
     //if (i != 23 && i != 17 && i != 20 && i != 21 && j != 3 && j != 6 && j != 7 && j != 10) {
 
       if (grid[i][j].contains(avatarX-10, avatarY-10)) {
-          plantStage(i-21,j-2);
+          if (keyCode == 86) {
+          plantStage(i-21,j-2); }
+          else {
+            if (grid[i-21][j-2].stg1bool == false) {
+              grid[i-21][j-2].first(); //stg1
+              grid[i-21][j-2].stg1bool = true;
+            }
+          }
 
           //grid[i-21][j-2].second(); //change from fifth. use timer to increment
           //storeCoordinate(i-21,j-2,fullyGrownArray);
@@ -340,13 +358,12 @@ function plantStage(i, j) {
  }
 
 
-    if (keyCode === 71) { //g
 
-    }
 
     if (keyCode === 69 && timerActive === true && timeLeftGlobal >= 3) {
         if (avatarX-50 <= walkXpos && avatarX+50 >= walkXpos) {
           if (avatarY-50 <= walkYpos && avatarY+50 >= walkYpos) {
+
         console.log('e down');
         myDiv.hide();
         myDivWalk.hide();
