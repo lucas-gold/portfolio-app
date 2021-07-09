@@ -28,7 +28,7 @@ function preload() {
   avatar_walk_up = createImg('images/bear_walk_up.gif');
   avatar_walk_left = createImg('images/bear_walk_left.gif');
   avatar_walk_right = createImg('images/bear_walk_right.gif');
-  avatar_default = createImg('images/bear_default.png'); //
+  avatar_default = createImg('images/bearidle60.gif'); //
 
   avatar_carry_left = createImg('images/can_left.gif');
   avatar_carry_right = createImg('images/can_right.gif');
@@ -45,6 +45,22 @@ function preload() {
   avatar_pour_defaultL = createImg('images/canPour_left_default.gif');
   avatar_pour_defaultR = createImg('images/canPour_right_default.gif');
 
+
+//************ spear attack ************//************
+  avatar_spear_left = createImg('images/bear_spear_walk.gif');
+  avatar_spear_right = createImg('images/bear_spear_walk_right.gif');
+  avatar_spear_up = createImg('images/bear_spear_walk.gif');
+  avatar_spear_down = createImg('images/bear_spear_walk_right.gif');
+  avatar_spear_defaultL = createImg('images/bear_spear_default.png');
+  avatar_spear_defaultR = createImg('images/bear_spear_default.png');
+
+  avatar_spearAttack_left = createImg('images/bear_spear_walk_stab.gif');
+  avatar_spearAttack_right = createImg('images/bear_spear_walk_stab_right.gif');
+  avatar_spearAttack_up = createImg('images/bear_spear_walk_stab.gif');
+  avatar_spearAttack_down = createImg('images/bear_spear_walk_stab_right.gif');
+  avatar_spearAttack_defaultL = createImg('images/bear_spear_default_stab.png');
+  avatar_spearAttack_defaultR = createImg('images/bear_spear_default_stab.png');
+  //************//************//************//************//************
 
 
   avatar_default.size(27,40);
@@ -68,6 +84,20 @@ function preload() {
   avatar_pour_up.size(52,55);
   avatar_pour_down.size(52,55);
 
+  avatar_spear_defaultL.size(83,42);
+  avatar_spear_defaultR.size(83,42);
+  avatar_spear_left.size(83,42);
+  avatar_spear_right.size(83,42);
+  avatar_spear_up.size(83,42);
+  avatar_spear_down.size(83,42);
+
+  avatar_spearAttack_defaultL.size(83,42);
+  avatar_spearAttack_defaultR.size(83,42);
+  avatar_spearAttack_left.size(83,42);
+  avatar_spearAttack_right.size(83,42);
+  avatar_spearAttack_up.size(83,42);
+  avatar_spearAttack_down.size(83,42);
+
 
   avatar_default.style('z-index', '10');
   avatar_walk_down.style('z-index', '10');
@@ -90,6 +120,22 @@ function preload() {
   avatar_pour_up.style('z-index', '10');
   avatar_pour_down.style('z-index', '10');
   //add up and down
+
+avatar_spear_defaultR.style('transform', 'scaleX(-1)');
+  avatar_spear_defaultL.style('z-index', '10');
+  avatar_spear_defaultR.style('z-index', '10');
+  avatar_spear_left.style('z-index', '10');
+  avatar_spear_right.style('z-index', '10');
+  avatar_spear_up.style('z-index', '10');
+  avatar_spear_down.style('z-index', '10');
+
+  avatar_spearAttack_defaultR.style('transform', 'scaleX(-1)');
+  avatar_spearAttack_defaultL.style('z-index', '10');
+  avatar_spearAttack_defaultR.style('z-index', '10');
+  avatar_spearAttack_left.style('z-index', '10');
+  avatar_spearAttack_right.style('z-index', '10');
+  avatar_spearAttack_up.style('z-index', '10');
+  avatar_spearAttack_down.style('z-index', '10');
 
 
 

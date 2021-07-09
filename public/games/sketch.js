@@ -16,8 +16,8 @@ var timerAmt = 0;
     timerActive = true;
 
     var timeLeft = timerAmt;
-    timerDiv = createDiv(timeLeft);
-    timerDiv.position(100,100);
+    //timerDiv = createDiv(timeLeft);
+    //timerDiv.position(100,100);
 
     var downTimer = setInterval(function() {
 
@@ -26,10 +26,10 @@ var timerAmt = 0;
     }
 
     timeLeftGlobal = timeLeft;
-    timerDiv.html(timeLeft);
+    //timerDiv.html(timeLeft);
 
       if (timeLeft == addedYtime + addedXtime - Math.floor(addedXtime/3)) {
-        if (successAttack == false) {
+        if (successAttack == false && atkBool === true) {
           grid[fullyGrownArray[pos].x][fullyGrownArray[pos].y] = new cell(fullyGrownArray[pos].x, fullyGrownArray[pos].y, w); //reset crop
         //  grid[fullyGrownArray[pos].x][fullyGrownArray[pos].y].first();
           fullyGrownArray.splice(pos,1);
@@ -39,7 +39,7 @@ var timerAmt = 0;
       else if (timeLeft <= 0){
         timerActive = false;
         clearInterval(downTimer);
-        timerDiv.hide();
+        //timerDiv.hide();
         //if (attackSuccess == false) {
 
         //}
@@ -198,7 +198,13 @@ var timerAmt = 0;
             console.log("no");
           }
         }
+
+        if (pause == false) {
           tid = setTimeout(attacker, timerAmt*1000); //repeat every x seconds after activating once
+        }
+        else {
+          clearTimeout(tid); 
+        }
 
 
 
@@ -349,7 +355,7 @@ var pausePressed = false;
   }
 
   else if ((timeLeftGlobal <= 1 || successAttack == true) && atkBool == true) {
-    console.log('hi');
+    //console.log('hi');
     myDivWalk.hide();
     myDiv.hide();
     //walkYpos = 900; //just shoot it off screen for 1 second
@@ -484,18 +490,35 @@ var pausePressed = false;
       avatar_carry_left.hide();
       avatar_carry_down.hide();
 
-      if (waterCan == false) {
+      avatar_spear_right.hide();
+      avatar_spear_up.hide();
+      avatar_spear_left.hide();
+      avatar_spear_down.hide();
+
+
+      if (waterCan == false && spear == false) {
         avatar_carry_defaultL.hide();
         avatar_carry_defaultR.hide();
-        avatarMove(avatar_walk_right, avatar_walk_left, avatar_walk_up, avatar_walk_down, avatar_default, avatar_default, moveSpeed, extraXdef, extraYdef, avatar_pour_defaultL, avatar_pour_defaultR, avatar_pour_left, avatar_pour_right, avatar_pour_up, avatar_pour_down); }
-      else {
+        avatar_spear_defaultL.hide(); avatar_spear_defaultR.hide();
+
+        avatarMove(avatar_walk_right, avatar_walk_left, avatar_walk_up, avatar_walk_down, avatar_default, avatar_default, moveSpeed, extraXdef, extraYdef, avatar_spearAttack_defaultL, avatar_spearAttack_defaultR, avatar_spearAttack_left, avatar_spearAttack_right, avatar_spearAttack_up, avatar_spearAttack_down);
+      } //avatar_pour_defaultL, avatar_pour_defaultR, avatar_pour_left, avatar_pour_right, avatar_pour_up, avatar_pour_down); }
+      else if (waterCan == true && spear == false) {
+
         avatar_default.hide();
+        avatar_spear_defaultL.hide(); avatar_spear_defaultR.hide();
         avatarMove(avatar_carry_right, avatar_carry_left, avatar_carry_up, avatar_carry_down, avatar_carry_defaultL, avatar_carry_defaultR, moveSpeed_can, extraXcarry, extraYcarry, avatar_pour_defaultL, avatar_pour_defaultR, avatar_pour_left, avatar_pour_right, avatar_pour_up, avatar_pour_down);
         // if (waterCanActive == true ) {
         //   avatar_default.hide();
         //
         //   avatarMove(avatar_carry_pour, avatar_carry_left, avatar_carry_up, avatar_carry_down, avatar_carry_pour, moveSpeed_can, extraYcarry);
         // }
+      }
+      if (spear == true && waterCan == false) {
+          avatar_carry_defaultL.hide();
+          avatar_carry_defaultR.hide();
+          avatar_default.hide();
+        avatarMove(avatar_spear_right, avatar_spear_left, avatar_spear_up, avatar_spear_down, avatar_spear_defaultL, avatar_spear_defaultR, moveSpeed_can, extraXspear, extraYspear, avatar_spearAttack_defaultL, avatar_spearAttack_defaultR, avatar_spearAttack_left, avatar_spearAttack_right, avatar_spearAttack_up, avatar_spearAttack_down);
       }
 
 

@@ -3,7 +3,7 @@ var img1; var img2; var img3; var img4; var img5; var img6;
 var stg1; var stg2; var stg3; var stg4; var wc; var wcPour;
 var picA;
 
-var stg0; var pumpkin_stg1; var pumpkin_stg1_w; var pumpkin_stg2; var pumpkin_stg2_w; var pumpkin_stg3; var pumpkin_stg3_w; 
+var stg0; var pumpkin_stg1; var pumpkin_stg1_w; var pumpkin_stg2; var pumpkin_stg2_w; var pumpkin_stg3; var pumpkin_stg3_w;
 
 var avatar_walk_down; var avatar_walk_up; var avatar_walk_left; var avatar_walk_right; var avatar_default;
 
@@ -72,10 +72,15 @@ var avatarY = 500;
 var moveSpeed = 2.3;
 var moveSpeed_can = 1.5;
 
-var extraYcarry = 15;
-var extraYdef = 0;
-var extraXcarry = 20;
 var extraXdef = 0;
+var extraYdef = 0;
+
+//var extraXcarry = 20;
+var extraXcarry = 15;
+var extraYcarry = 15;
+
+var extraXspear = 22;
+var extraYspear = 2;
 
 //keypressed
 var fullyGrownArray = [];
@@ -84,3 +89,27 @@ var waterCanActive = false;
 var firstClick = true;
 var pourDirection = "nil";
 var carryDirection = "nil";
+
+
+
+
+
+var spear = false;
+var spearActive = false;
+var firstClickSpear = true;
+
+
+
+var avatar_spear_left;
+var avatar_spear_right;
+var avatar_spear_up;
+var avatar_spear_down;
+var avatar_spear_defaultL;
+var avatar_spear_defaultR;
+
+var avatar_spearAttack_left;
+var avatar_spearAttack_right;
+var avatar_spearAttack_up;
+var avatar_spearAttack_down;
+var avatar_spearAttack_defaultL;
+var avatar_spearAttack_defaultR;

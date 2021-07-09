@@ -21,8 +21,9 @@
             defaultPosL.show();
           }
 
-
-          if (keyIsDown(86) && waterCan == true) {
+          //add vars for 86 & waterCan so it can be adapted to seed planting, sword swing, etc
+          //replace all occurences of pour with more generic name
+          if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
 
             if (pourDirection === "right")
             {
@@ -41,6 +42,7 @@
 
 
           }
+
           else {
             pourDefaultLeft.hide();
             pourDefaultRight.hide();
@@ -70,7 +72,7 @@
               defaultPosR.hide();
 
 
-                    if (keyIsDown(86) && waterCan == true) {
+                    if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
                       pourUp.position(avatarX-11, avatarY - extraY - 1.5);
                       up.hide();
                       pourUp.show();
@@ -106,7 +108,7 @@
               defaultPosR.hide();
 
 
-                    if (keyIsDown(86) && waterCan == true) {
+                    if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
                       pourDown.position(avatarX-11, avatarY - extraY - 1.5);
 
                       down.hide();
@@ -145,7 +147,7 @@
                 defaultPosR.hide();
 
 
-                      if (keyIsDown(86) && waterCan == true) {
+                      if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
                         pourLeft.position(avatarX-11, avatarY - extraY - 1.5);
 
                         left.hide();
@@ -181,7 +183,7 @@
 
 
 
-                      if (keyIsDown(86) && waterCan == true) {
+                      if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
                         pourRight.position(avatarX-11, avatarY- extraY-1.5);
 
                         right.hide();
@@ -212,29 +214,25 @@ function timerPlants(stage, time, i, j) {
 
   var timeLeft = time;
 
-  var downTimer = setInterval(function() {
+  var downPlantTimer = setInterval(function() {
 
     timeLeft = timeLeft - 1;
     if (timeLeft <= 0){
       grid[i][j].plantTimer = false;
-      clearInterval(downTimer);
+      clearInterval(downPlantTimer);
 
       if (stage === 1) {
-        //enemies wont be a problem because this stage wont be attacked at first
         grid[i][j].second();
       }
       else if (stage === 2) {
-        //enemies wont be a problem because this stage wont be attacked at first
         grid[i][j].third();
       }
       else if (stage === 3) {
-        //enemies wont be a problem because this stage wont be attacked at first
         grid[i][j].fourth();
       }
       else if (stage === 4) {
-        //enemies wont be a problem because this stage wont be attacked at first
         grid[i][j].fifth();
-        storeCoordinate(i,j,fullyGrownArray); //instead of storing coordinate here, do it after grid[i][j] activates final stage in timer function
+        storeCoordinate(i,j,fullyGrownArray); //for attacker
 
       }
 
@@ -254,27 +252,24 @@ if (grid[i][j].stg1bool == true) {
     grid[i][j].firstWet();
     //storeCoordinate(i,j,fullyGrownArray);
     grid[i][j].stg1wbool = true;
-    timerPlants(1, 6, i, j);
+    timerPlants(1, 1, i, j);
   }
 
   else if (grid[i][j].stg2wbool == false && grid[i][j].plantTimer === false) {
     grid[i][j].secondWet();
-    //storeCoordinate(i,j,fullyGrownArray);
     grid[i][j].stg2wbool = true;
-    timerPlants(2, 6, i, j);
+    timerPlants(2, 1, i, j);
   }
 
   else if (grid[i][j].stg3wbool == false && grid[i][j].plantTimer === false) {
     grid[i][j].thirdWet();
-    //storeCoordinate(i,j,fullyGrownArray);
     grid[i][j].stg3wbool = true;
-    timerPlants(3, 6, i, j);
+    timerPlants(3, 1, i, j);
   }
   else if (grid[i][j].stg4wbool == false && grid[i][j].plantTimer === false) {
     grid[i][j].fourthWet();
-    //storeCoordinate(i,j,fullyGrownArray);
     grid[i][j].stg4wbool = true;
-    timerPlants(4, 6, i, j);
+    timerPlants(4, 1, i, j);
   }
 }
 
@@ -296,9 +291,7 @@ if (grid[i][j].stg1bool == true) {
     }
 
     //plant seed
-    if (keyCode === 71) { //g
 
-    }
 
     //water tree
     // if (keyCode == 86 && waterCan == true) { //set to V for now but set to 32=spacebar once sizes are fixed
@@ -327,7 +320,11 @@ if (grid[i][j].stg1bool == true) {
     //   waterCanActive = false;
     // }
 
-    if ((keyCode == 86 && waterCan == true) || keyCode == 71) { //set to V for now but set to 32=spacebar once sizes are fixed
+
+//add var for seedSelected and pass to plantStage and first()
+//change (keyCode == 71 ) to (keycode == 71 && seedOut == true)
+  //only plant when seed planter animation is running i.e. seedOut == true
+    if ((keyCode == 86 && waterCan == true) || keyCode == 71 || keyCode == 72) { //set to V for now but set to 32=spacebar once sizes are fixed
    for (var i = 21; i < numcol; i++) {
     for (var j = 2; j < numrow; j++){
     if (i != 24 && i != 25 && i != 26 && i != 30 && i != 31 && i != 32 && j != 5 && j != 6 && j != 10 && j != 11 && j != 12 && j != 16 && j != 17) {
@@ -336,11 +333,28 @@ if (grid[i][j].stg1bool == true) {
       if (grid[i][j].contains(avatarX-10, avatarY-10)) {
           if (keyCode == 86) {
           plantStage(i-21,j-2); }
-          else {
+          else if (keyCode == 71) { //g
             if (grid[i-21][j-2].stg1bool == false) {
               grid[i-21][j-2].first(); //stg1
               grid[i-21][j-2].stg1bool = true;
             }
+          }
+          else if (keyCode == 72 && grid[i-21][j-2].fifthStage == true) { //h
+            //make it so if myDiv is active it's too late
+            //shovel should take 3ish seconds to dig up anyway
+            //maybe use keyIsDown in draw() for that.
+            if (atkBool == true) {
+              myDivWalk.hide();
+              myDiv.hide();
+              atkBool = false;
+            }
+            grid[i-21][j-2] = new cell(i-21, j-2, grid[i-21][j-2].w); //reset crop
+            fullyGrownArray.splice(randPosGlobal,1);
+
+              //enemyExit.position(0,0);
+
+
+            console.log("here")
           }
 
           //grid[i-21][j-2].second(); //change from fifth. use timer to increment
@@ -441,11 +455,24 @@ if (grid[i][j].stg1bool == true) {
     //switch to water can
     if (keyCode === 70 && firstClick == true) { //F
       waterCan = true;
+      spear = false;
+      firstClickSpear = true;
       firstClick = false;
     }
     else if (keyCode === 70 && firstClick == false) {
       waterCan = false;
       firstClick = true;
+    }
+
+    if (keyCode === 49 && firstClickSpear == true) { //1 - switch to spear
+      spear = true;
+      waterCan = false;
+      firstClick = true;
+      firstClickSpear = false;
+    }
+    else if (keyCode === 49 && firstClickSpear == false) { //1 - switch to spear
+      spear = false;
+      firstClickSpear = true;
     }
 
 
