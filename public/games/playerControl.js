@@ -395,7 +395,13 @@ if (grid[i][j].stg1bool == true) {
         walkXpos = 0;
         myDiv.style('z-index', '-100');
         successAttack = true;
-        //timerAtk = new Timer(attacker, timerAmt*1000);
+
+        timerAtk.pause();
+        timerAtk.resume();
+        timerActive = false;
+        clearInterval(downTimer);
+        timerDiv.hide();
+
       }
       }
     }

@@ -6,7 +6,7 @@ function make2dArray(cols, rows){
       return arr;
   }
 
-
+var downTimer;
 
 var timeLeftGlobal;
 
@@ -19,7 +19,7 @@ var timerAmt = 0;
     timerDiv = createDiv(timeLeft);
     timerDiv.position(100,100);
 
-    var downTimer = setInterval(function() {
+    downTimer = setInterval(function() {
 
     if (pause == false && pausePressed == false) {
       timeLeft = timeLeft-1;
