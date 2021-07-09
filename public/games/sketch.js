@@ -16,8 +16,8 @@ var timerAmt = 0;
     timerActive = true;
 
     var timeLeft = timerAmt;
-    //timerDiv = createDiv(timeLeft);
-    //timerDiv.position(100,100);
+    timerDiv = createDiv(timeLeft);
+    timerDiv.position(100,100);
 
     var downTimer = setInterval(function() {
 
@@ -26,7 +26,7 @@ var timerAmt = 0;
     }
 
     timeLeftGlobal = timeLeft;
-    //timerDiv.html(timeLeft);
+    timerDiv.html(timeLeft);
 
       if (timeLeft == addedYtime + addedXtime - Math.floor(addedXtime/3)) {
         if (successAttack == false && atkBool === true) {
@@ -39,7 +39,7 @@ var timerAmt = 0;
       else if (timeLeft <= 0){
         timerActive = false;
         clearInterval(downTimer);
-        //timerDiv.hide();
+        timerDiv.hide();
         //if (attackSuccess == false) {
 
         //}
@@ -55,6 +55,7 @@ var timerAmt = 0;
 
 //****SETUP****
   function setup(){
+
 
     canvas = createCanvas(530, 685);
     canvas.position(538,-43);
@@ -118,11 +119,43 @@ var timerAmt = 0;
   }
 
 
+
+
+  var Timer = function(callback, delay) {
+      var timerId, start, remaining = delay;
+
+      this.pause = function() {
+        console.log("pause")
+
+          clearTimeout(timerId);
+          remaining -= Date.now() - start;
+      };
+
+      this.resume = function() {
+          start = Date.now();
+          clearTimeout(timerId);
+          timerId = setTimeout(callback, remaining);
+          console.log("resume")
+
+      };
+
+      this.resume();
+      console.log("timer")
+
+  };
+
+
+
+
+
+
   //var attackTrue = false;
 
   var randPosGlobal = 0;
   var addedYtime = 0;
   var addedXtime = 0;
+
+
 
   function attacker() {
 
@@ -186,11 +219,11 @@ var timerAmt = 0;
 
           walk = true;
           timer(randPos);
+          timerAtk = new Timer(attacker, timerAmt*1000);
           grid[fullyGrownArray[randPos].x][fullyGrownArray[randPos].y].attack();
           console.log("yes");
           //setTimeout(() => {  mouseClick(); }, 3000); //3 second countdown to hold down mouse after attacker appears
                 //make countdown random between 3 and 15 seconds
-
           }
           else {
             atkBool = false;
@@ -199,18 +232,23 @@ var timerAmt = 0;
           }
         }
 
-        if (pause == false) {
-          tid = setTimeout(attacker, timerAmt*1000); //repeat every x seconds after activating once
-        }
-        else {
-          clearTimeout(tid); 
-        }
-
+        // if (pausePressed == false) {
+        //   tid = setTimeout(attacker, timerAmt*1000); //repeat every x seconds after activating once
+        // }
+        // else {
+        //  clearTimeout(tid);
+        // }
 
 
     //  }
     //}
+
+
   }
+
+  var timerAtk = new Timer(attacker, timerAmt*1000);
+
+
 
 
 var is_walkYpos_height125_complete = false;
@@ -229,6 +267,8 @@ var pausePressed = false;
 
 
   function draw() {
+
+
 
     //for square highlight
       //stroke(20);

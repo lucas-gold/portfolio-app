@@ -232,7 +232,11 @@ function timerPlants(stage, time, i, j) {
       }
       else if (stage === 4) {
         grid[i][j].fifth();
+        if (fullyGrownArray.length == 0) {
+          timerAtk = new Timer(attacker, timerAmt*1000);
+        }
         storeCoordinate(i,j,fullyGrownArray); //for attacker
+
 
       }
 
@@ -279,15 +283,20 @@ if (grid[i][j].stg1bool == true) {
 
 
 }
-
+  resumePressed = false;
 
   function keyPressed() {
 
+    //will come out for multiple crops but only those already planted once timerAtk starts
     if (keyCode == 80) { //p
+      timerAtk.pause();
       pausePressed = true;
     }
     if (keyCode == 79) { //o
       pausePressed = false;
+    //  timerAtk.resume();
+      timerAtk = new Timer(attacker, timerAmt*1000);
+
     }
 
     //plant seed
@@ -359,7 +368,7 @@ if (grid[i][j].stg1bool == true) {
 
           //grid[i-21][j-2].second(); //change from fifth. use timer to increment
           //storeCoordinate(i-21,j-2,fullyGrownArray);
-          if (firstAtk == false) {attacker(); }//only activate on if statement condition
+          if (firstAtk == false) {  attacker(); }//only activate on if statement condition
 
       }
     }
@@ -386,6 +395,7 @@ if (grid[i][j].stg1bool == true) {
         walkXpos = 0;
         myDiv.style('z-index', '-100');
         successAttack = true;
+        //timerAtk = new Timer(attacker, timerAmt*1000);
       }
       }
     }

@@ -190,7 +190,7 @@ cell.prototype.show = function() {
   //  stage1 = createImg('images/stage1copy2.png', 'stg1');
     //stage1.position(this.x+610,this.y+90);
     //stage1.size(35,35);
-      image(stg0, this.x+100, this.y+135, 28, 28);
+      image(stg0, this.x+100, this.y+135, 32, 32);
 
 
 
