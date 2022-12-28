@@ -1,6 +1,6 @@
 //add all 5 pour animations
-  function avatarMove(right, left, up, down, defaultPosL, defaultPosR, speed, extraX, extraY, pourDefaultLeft, pourDefaultRight, pourLeft, pourRight, pourUp, pourDown) {
-
+  function avatarMove(right, left, up, down, defaultPosL, defaultPosR, speed, extraX_L, extraX_R, extraY, pourDefaultLeft, pourDefaultRight, pourLeft, pourRight, pourUp, pourDown) {
+      
     //bear avatar movement
 
 
@@ -23,7 +23,7 @@
 
           //add vars for 86 & waterCan so it can be adapted to seed planting, sword swing, etc
           //replace all occurences of pour with more generic name
-          if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
+          if ((keyIsDown(69) && waterCan == true) || (keyIsDown(69) && spear == true)) {
 
             if (pourDirection === "right")
             {
@@ -33,7 +33,7 @@
               defaultPosR.hide();
             }
             else {
-              pourDefaultLeft.position(avatarX-11, avatarY - extraY - 1.5);
+              pourDefaultLeft.position(avatarX-30, avatarY - extraY - 1.5);
               pourDefaultLeft.show();
               defaultPosL.hide();
               defaultPosR.hide();
@@ -63,7 +63,7 @@
 
               up.show();
 
-              up.position(avatarX, avatarY-extraY);
+              up.position(avatarX-extraX_L, avatarY-extraY);
 
               right.hide();
               left.hide();
@@ -72,8 +72,8 @@
               defaultPosR.hide();
 
 
-                    if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
-                      pourUp.position(avatarX-11, avatarY - extraY - 1.5);
+                    if ((keyIsDown(69) && waterCan == true) || (keyIsDown(69) && spear == true)) {
+                      pourUp.position(avatarX-30, avatarY - extraY - 1.5);
                       up.hide();
                       pourUp.show();
                       speed = speed-0.5;
@@ -99,7 +99,7 @@
 
               down.show();
 
-              down.position(avatarX-extraX, avatarY-extraY);
+              down.position(avatarX-extraX_R, avatarY-extraY);
 
               right.hide();
               up.hide();
@@ -108,7 +108,7 @@
               defaultPosR.hide();
 
 
-                    if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
+                    if ((keyIsDown(69) && waterCan == true) || (keyIsDown(69) && spear == true)) {
                       pourDown.position(avatarX-11, avatarY - extraY - 1.5);
 
                       down.hide();
@@ -138,7 +138,7 @@
 
                 left.show();
 
-                left.position(avatarX, avatarY-extraY);
+                left.position(avatarX-extraX_L, avatarY-extraY);
 
                 right.hide();
                 up.hide();
@@ -147,8 +147,8 @@
                 defaultPosR.hide();
 
 
-                      if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
-                        pourLeft.position(avatarX-11, avatarY - extraY - 1.5);
+                      if ((keyIsDown(69) && waterCan == true) || (keyIsDown(69) && spear == true)) {
+                        pourLeft.position(avatarX-30, avatarY - extraY - 1.5);
 
                         left.hide();
                         pourLeft.show();
@@ -173,7 +173,7 @@
 
               right.show();
 
-              right.position(avatarX-extraX, avatarY-extraY);
+              right.position(avatarX-extraX_R, avatarY-extraY);
 
               left.hide();
               up.hide();
@@ -183,7 +183,7 @@
 
 
 
-                      if ((keyIsDown(86) && waterCan == true) || (keyIsDown(81) && spear == true)) {
+                      if ((keyIsDown(69) && waterCan == true) || (keyIsDown(69) && spear == true)) {
                         pourRight.position(avatarX-11, avatarY- extraY-1.5);
 
                         right.hide();
@@ -196,8 +196,8 @@
 
 
 
-            defaultPosL.position(avatarX, avatarY - extraY);
-            defaultPosR.position(avatarX-extraX, avatarY - extraY);
+            defaultPosL.position(avatarX-extraX_L, avatarY - extraY);
+            defaultPosR.position(avatarX-extraX_R, avatarY - extraY);
 
 
 
@@ -333,16 +333,16 @@ if (grid[i][j].stg1bool == true) {
 //add var for seedSelected and pass to plantStage and first()
 //change (keyCode == 71 ) to (keycode == 71 && seedOut == true)
   //only plant when seed planter animation is running i.e. seedOut == true
-    if ((keyCode == 86 && waterCan == true) || keyCode == 71 || keyCode == 72) { //set to V for now but set to 32=spacebar once sizes are fixed
+    if ((keyCode == 69 && waterCan == true) || (keyCode == 69 && holdSeedPumpkin == true) || keyCode == 72) { //set to V for now but set to 32=spacebar once sizes are fixed
    for (var i = 21; i < numcol; i++) {
     for (var j = 2; j < numrow; j++){
     if (i != 24 && i != 25 && i != 26 && i != 30 && i != 31 && i != 32 && j != 5 && j != 6 && j != 10 && j != 11 && j != 12 && j != 16 && j != 17) {
     //if (i != 23 && i != 17 && i != 20 && i != 21 && j != 3 && j != 6 && j != 7 && j != 10) {
 
       if (grid[i][j].contains(avatarX-10, avatarY-10)) {
-          if (keyCode == 86) {
+          if ((keyCode == 69 && waterCan == true)) {
           plantStage(i-21,j-2); }
-          else if (keyCode == 71) { //g
+          else if ((keyCode == 69 && holdSeedPumpkin == true)) { //g
             if (grid[i-21][j-2].stg1bool == false) {
               grid[i-21][j-2].first(); //stg1
               grid[i-21][j-2].stg1bool = true;
@@ -383,7 +383,7 @@ if (grid[i][j].stg1bool == true) {
 
 
 
-    if (keyCode === 69 && timerActive === true && timeLeftGlobal >= 3) {
+    if (keyCode === 69 && timerActive === true && timeLeftGlobal >= 3 && spear === true) {
         if (avatarX-50 <= walkXpos && avatarX+50 >= walkXpos) {
           if (avatarY-50 <= walkYpos && avatarY+50 >= walkYpos) {
 
@@ -474,6 +474,9 @@ if (grid[i][j].stg1bool == true) {
       spear = false;
       firstClickSpear = true;
       firstClick = false;
+
+      holdSeedPumpkin = false;
+      firstClickHoldSeedPumpkin = true;
     }
     else if (keyCode === 70 && firstClick == false) {
       waterCan = false;
@@ -485,10 +488,29 @@ if (grid[i][j].stg1bool == true) {
       waterCan = false;
       firstClick = true;
       firstClickSpear = false;
+
+      holdSeedPumpkin = false;
+      firstClickHoldSeedPumpkin = true;
     }
-    else if (keyCode === 49 && firstClickSpear == false) { //1 - switch to spear
+    else if (keyCode === 49 && firstClickSpear == false) { //1 - switch from spear
       spear = false;
       firstClickSpear = true;
+    }
+
+    if (keyCode === 50 && firstClickHoldSeedPumpkin == true) { //2 - switch to seed
+      holdSeedPumpkin = true;
+      spear = false;
+      waterCan = false;
+
+      firstClick = true;
+      firstClickSpear = true;
+      firstClickHoldSeedPumpkin = false;
+
+    }
+    else if (keyCode === 50 && firstClickHoldSeedPumpkin == false) { //2 - switch to seed
+      holdSeedPumpkin = false;
+      firstClickHoldSeedPumpkin = true;
+
     }
 
 

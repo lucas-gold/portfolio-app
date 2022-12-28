@@ -37,15 +37,15 @@ class App extends Component {
 
             <div style={{marginTop:"100px"}}>
             <div className="border-container">
-              <span class="left">
+              <span class="left" style={{marginTop: 20}}>
+                <h3>NextGen Kitchens</h3><h5>Aug 2021 - Present</h5>
+                <h6 style={{fontSize:"15.5px"}}>Software Developer:<br />
+                {"React Native, Node.js, "}<br/>{" NoSQL, Firebase & GCP, Vue.js, Python, PHP."}</h6><br/>
+                <h3><a href="https://www.abovegroundartsupplies.com" target="_blank" rel="noopener noreferrer" style={{textDecoration:"none", color:"inherit"}}>Above Ground Art Supplies</a></h3><h5>Nov 2020 - Jun 2021</h5>
+                <h6 style={{fontSize:"15.5px"}}>- {"Wordpress & PHP web development"}</h6><br />
                 <h3>Ryerson University</h3><h5>2017-2020</h5>
                 <h6 style={{fontSize:"15.5px"}}>B.Sc. in Computer Science
-                <br /><br /><br />- &nbsp;&nbsp;&nbsp;GPA: 3.6/4.0<br /></h6>
-                <br />
-                <br />
-                <h3><a href="https://www.abovegroundartsupplies.com" target="_blank" rel="noopener noreferrer" style={{textDecoration:"none", color:"inherit"}}>Above Ground Art Supplies</a></h3><h5>November 2020 - May 2021</h5><br />
-                <h6 style={{fontSize:"15.5px"}}>- Wordpress & PHP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;web development</h6><br />
-                <br/>
+                <br />- &nbsp;&nbsp;&nbsp;GPA: 3.6/4.0<br /></h6>
               </span>
               <span class="right">
               </span>
@@ -81,7 +81,7 @@ class App extends Component {
             </div>
 
             <Fade up delay={1700}><div className="intro-container">
-            Hi - I'm Lucas! I'm a recent computer science graduate based in Toronto where I studied and continue to pursue full-stack web development and software development in Java.
+            Hi - I'm Lucas! I'm a software developer with experience developing full-stack, cross-platform mobile apps using React Native and Node.js!
             </div></Fade>
             <br /><br />
             <div style={{marginTop:"10%"}}></div>

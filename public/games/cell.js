@@ -24,6 +24,9 @@ function preload() {
   wc = loadImage('images/watercan1.png');
   wcPour = loadImage('images/watercan2.png');
 
+  var avat = ['images/bear_walk_down.gif', 'images/bear_walk_up.gif']; //do this?
+  //why nott justt use one or two sets and just do a new createImg to change it to something else?
+
   avatar_walk_down = createImg('images/bear_walk_down.gif');
   avatar_walk_up = createImg('images/bear_walk_up.gif');
   avatar_walk_left = createImg('images/bear_walk_left.gif');
@@ -36,7 +39,6 @@ function preload() {
   avatar_carry_down = createImg('images/can_right.gif');
   avatar_carry_defaultL = createImg('images/carry_left_default.gif');
   avatar_carry_defaultR = createImg('images/carry_right_default.gif');
-
 
   avatar_pour_left = createImg('images/canPour_left.gif');
   avatar_pour_right = createImg('images/canPour_right.gif');
@@ -60,7 +62,25 @@ function preload() {
   avatar_spearAttack_down = createImg('images/bear_spear_walk_stab_right.gif');
   avatar_spearAttack_defaultL = createImg('images/bear_spear_default_stab.png');
   avatar_spearAttack_defaultR = createImg('images/bear_spear_default_stab.png');
+
+  avatar_spearAttack_defaultR.style('transform', 'scaleX(-1)');
+  avatar_spear_defaultR.style('transform', 'scaleX(-1)');
   //************//************//************//************//************
+
+
+  //seed
+
+  avatar_seedPumpkin_left = createImg('images/bear_pumpkinseed_walk.gif');
+  avatar_seedPumpkin_right = createImg('images/bear_pumpkinseed_walk.gif');
+  avatar_seedPumpkin_up = createImg('images/bear_pumpkinseed_walk.gif');
+  avatar_seedPumpkin_down = createImg('images/bear_pumpkinseed_walk.gif');
+  avatar_seedPumpkin_defaultL = createImg('images/bear_pumpkinseed_default.png');
+  avatar_seedPumpkin_defaultR = createImg('images/bear_pumpkinseed_default.png');
+  avatar_seedPumpkin_right.style('transform', 'scaleX(-1)');
+  avatar_seedPumpkin_defaultR.style('transform', 'scaleX(-1)');
+  avatar_seedPumpkin_down.style('transform', 'scaleX(-1)');
+
+
 
 
   avatar_default.size(27,40);
@@ -98,48 +118,16 @@ function preload() {
   avatar_spearAttack_up.size(83,42);
   avatar_spearAttack_down.size(83,42);
 
-
-  avatar_default.style('z-index', '10');
-  avatar_walk_down.style('z-index', '10');
-  avatar_walk_up.style('z-index', '10');
-  avatar_walk_left.style('z-index', '10');
-  avatar_walk_right.style('z-index', '10');
-
-
-  avatar_carry_defaultL.style('z-index', '10');
-  avatar_carry_defaultR.style('z-index', '10');
-  avatar_carry_left.style('z-index', '10');
-  avatar_carry_right.style('z-index', '10');
-  avatar_carry_up.style('z-index', '10');
-  avatar_carry_down.style('z-index', '10');
-
-  avatar_pour_defaultL.style('z-index', '10');
-  avatar_pour_defaultR.style('z-index', '10');
-  avatar_pour_left.style('z-index', '10');
-  avatar_pour_right.style('z-index', '10');
-  avatar_pour_up.style('z-index', '10');
-  avatar_pour_down.style('z-index', '10');
-  //add up and down
-
-avatar_spear_defaultR.style('transform', 'scaleX(-1)');
-  avatar_spear_defaultL.style('z-index', '10');
-  avatar_spear_defaultR.style('z-index', '10');
-  avatar_spear_left.style('z-index', '10');
-  avatar_spear_right.style('z-index', '10');
-  avatar_spear_up.style('z-index', '10');
-  avatar_spear_down.style('z-index', '10');
-
-  avatar_spearAttack_defaultR.style('transform', 'scaleX(-1)');
-  avatar_spearAttack_defaultL.style('z-index', '10');
-  avatar_spearAttack_defaultR.style('z-index', '10');
-  avatar_spearAttack_left.style('z-index', '10');
-  avatar_spearAttack_right.style('z-index', '10');
-  avatar_spearAttack_up.style('z-index', '10');
-  avatar_spearAttack_down.style('z-index', '10');
-
-
+  avatar_seedPumpkin_defaultL.size(95,50);
+  avatar_seedPumpkin_defaultR.size(95,50);
+  avatar_seedPumpkin_left.size(95,50);
+  avatar_seedPumpkin_right.size(95,50);
+  avatar_seedPumpkin_up.size(95,50);
+  avatar_seedPumpkin_down.size(95,50);
 
 }
+
+
 
 
 function cell (i, j, w){
@@ -178,6 +166,14 @@ function cell (i, j, w){
 //  }
 
 }
+//console.log(window.innerWidth);
+//console.log(window.innerHeight);
+//var cropSize = window.innerWidth/50;
+var cropSize = 32;
+var cropPosX = window.innerWidth/12;
+var cropPosY = window.innerWidth/10;
+
+
 
 
 
@@ -190,7 +186,7 @@ cell.prototype.show = function() {
   //  stage1 = createImg('images/stage1copy2.png', 'stg1');
     //stage1.position(this.x+610,this.y+90);
     //stage1.size(35,35);
-      image(stg0, this.x+100, this.y+135, 32, 32);
+      image(stg0, this.x+margLeft-50, this.y+margTop*3.2, this.w, this.w); //originally this.w for last 2
 
 
 
@@ -198,35 +194,35 @@ cell.prototype.show = function() {
   if (this.firstStage) { //stg 1 no water
     //backgroundImg(this.x,this.y,this.w,this.h);
 
-    image(pumpkin_stg1, this.x+100, this.y+135, 32, 32);
+    image(pumpkin_stg1, this.x+margLeft-50, this.y+margTop*3.2, 27, 27);
   }
 
   if (this.firstWetStage) { //stg 1 watered
 
-    image(pumpkin_stg1_w, this.x+100, this.y+135, 32, 32);
+    image(pumpkin_stg1_w, this.x+margLeft-50, this.y+margTop*3.2, 27, 27);
 
 
   //  image(stg3, this.x+103, this.y+125, 30, 30);
   }
   if (this.secondStage) {
-    image(pumpkin_stg2, this.x+100, this.y+135, 32, 32);
+    image(pumpkin_stg2, this.x+margLeft-50, this.y+margTop*3.2, 27, 27);
 
   }
   if (this.secondWetStage) {
     //backgroundImg(this.x,this.y,this.w,this.h);
-    image(pumpkin_stg2_w, this.x+100, this.y+135, 32, 32);
+    image(pumpkin_stg2_w, this.x+margLeft-50, this.y+margTop*3.2, this.w, this.w);
 
   }
   if (this.thirdStage) {
     //backgroundImg(this.x,this.y,this.w,this.h);
 
-    image(pumpkin_stg3, this.x+100, this.y+135, 32, 32);
+    image(pumpkin_stg3, this.x+margLeft-50, this.y+margTop*3.2, this.w, this.w);
 
   }
   if (this.thirdWetStage) {
   //  backgroundImg(this.x,this.y,this.w,this.h);
 
-  image(pumpkin_stg3_w, this.x+100, this.y+135, 32, 32); //make img1 include brown dirt surrounding it
+  image(pumpkin_stg3_w, this.x+margLeft-50, this.y+margTop*3.2, this.w, this.w); //make img1 include brown dirt surrounding it
 
   //  image(stg7, this.x+80, this.y+40, 70, 120);
   }
@@ -234,15 +230,15 @@ cell.prototype.show = function() {
     //image(img1, this.x, this.y, this.w, this.w);
     //backgroundImg(this.x,this.y,this.w,this.h);
 
-    image(pumpkin_stg4, this.x+100, this.y+135, 32, 32);
+    image(pumpkin_stg4, this.x+margLeft-50, this.y+margTop*3.2, this.w, this.w);
 }
 if (this.fourthWetStage) {
 
-  image(pumpkin_stg4_w, this.x+100, this.y+135, 32, 32);
+  image(pumpkin_stg4_w, this.x+margLeft-50, this.y+margTop*3.2, this.w, this.w);
 }
 if (this.fifthStage) {
 
-  image(pumpkin_stg5, this.x+100, this.y+135, 32, 32);
+  image(pumpkin_stg5, this.x+margLeft-50, this.y+margTop*3.2, this.w, this.w);
 }
 
 
@@ -268,7 +264,7 @@ if (this.fifthStage) {
 
 }
 cell.prototype.contains = function (x, y) {
-    return (x > this.x && x < this.x + this.w && y > this.y && y < this.y + this. w )
+    return ((x > this.x && x < this.x + this.w) && (y > this.y && y < this.y + this. w));
 }
 
 cell.prototype.endGame = function () {

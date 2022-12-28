@@ -52,22 +52,99 @@ var timerAmt = 0;
   }
 
 
+  //CHANGE ALL THESE VALUES TO NOT BE BASED ON INNER WIDTH
+  // var margLeft = window.innerWidth/7.5;
+  //  var margTop = window.innerWidth*0.02;
+  // var margLeftUI = window.innerWidth/36;
+  // var bgWidth = window.innerWidth/1.5;
+  // var bgHeight = window.innerHeight/1.2;
+
+  var margLeft = 58;
+   var margTop = 5;
+  var margLeftUI = 10;
+  var bgWidth = 1350;
+  var bgHeight = 1000;
+
+  //var w = 5+bgWidth/45; //manually chosen for best size or whatever
+  var w = 27;
 
 //****SETUP****
   function setup(){
 
 
-    canvas = createCanvas(530, 685);
-    canvas.position(538,-43);
+
+    // if (bgWidth <= bgHeight ) {
+    //   bgHeight = bgWidth-75;
+    //   bgHeightUI = bgWidth+35;
+    //   bgWidthUI = window.innerWidth/1.5*1.45;
+    //   margLeft = window.innerWidth/6;
+    // }
+    // else if (bgWidth > bgHeight) {
+    //   bgWidth = bgHeight + 150;
+    //   bgWidthUI = bgWidth + 250;
+    //
+    // }
+    canvas = createCanvas(460, 600); //was 540, 685
+    canvas.position(650,120); //was 538,-43
       canvas.parent('game');
       canvas.style("display", "block");
 
-        bgScene = createImg('images/bgFarm.png', 'background');
-        bgScene.position(0,0);
+        //ui_bg = createImg('images/ui_bg4.png', "ui bg");
+        //ui_bg.position(75,-7); //was 75
+        //ui_bg.style('z-index','-11');
+        //ui_bg.size(1250, 850);
+        //ui_bg.size(bgWidth, bgHeight); //113
+      //ui_bg.style('width','78%'); //change to percentage
+      //ui_bg.style('height','auto');
+
+        bgScene = createImg('images/backgroundset2.png', 'background');
+        bgScene.position(10,0);
+
         bgScene.style('z-index', '-10');
-        bgScene.style('margin-top', '10px');
-        bgScene.style('margin-left', '212px');
-        bgScene.style('width','980px'); //change to percentage
+        //bgScene.style('border-radius', '20px');
+
+         //bgScene.style('max-height','100%'); //change to percentage
+        // bgScene.style('min-height','40%'); //change to percentage
+        //
+        // bgScene.style('max-height','500%');
+        //
+        // bgScene.style('width','auto');
+
+        //uncomment these to make background change with width change
+        //bgScene.style('width','80%');
+        //bgScene.style('height','auto');
+        //end of uncomment
+
+
+
+
+
+
+        //bgScene.style('margin-top', '50px'); // was 10px
+        //bgScene.style('margin-left', margLeft);
+        bgScene.style('width','1350px');
+
+      //  ui_bar = createImg('images/ui_bar2.png', 'ui bar');
+        //ui_bar.position(-105, 330);
+        //ui_bar.style('transform', 'rotate(90deg)');
+
+      //  ui_pumpkin = createImg('images/ui_pumpkin.png', 'ui pumpkin');
+      //  ui_pumpkin.position(143, 313);
+
+        ui_spear = createImg('images/ui_spear.png', 'ui spear');
+         ui_spear.size(50,65);
+         ui_spear.position(117, 240);
+         ui_spear.style('transform', 'rotate(45deg)');
+
+         ui_watercan = createImg('images/ui_watercan.png', 'ui watercan');
+         ui_watercan.position(125, 136);
+
+        //ui_pumpkinseed = createImg('images/ui_pumpkinseed.png', 'ui pumpkin seed');
+        //ui_pumpkinseed.size(28,32);
+        //ui_pumpkinseed.position(126, 312);
+
+
+
 
 
 
@@ -269,6 +346,9 @@ var pausePressed = false;
   function draw() {
 
 
+    cropSize = window.innerWidth/38;
+
+    playerLayer();
 
     //for square highlight
       //stroke(20);
@@ -283,16 +363,7 @@ var pausePressed = false;
       pause = false;
     }
 
-    //screen barriers for player
-    if (avatarX < 550) {
-      avatarX = 552;
-    }
-    else if (avatarX > 1137) {
-      avatarX = 1135;
-    }
-    if (avatarY < 15) {
-      avatarY = 17;
-    }
+
 
     // if (avatarX >= walkXpos && avatarX <= walkXpos+20) {
     //   avatarX = walkXpos-20;
@@ -303,7 +374,7 @@ var pausePressed = false;
        for (var i = 0; i < numcol; i++) {
           for (var j = 0; j< numrow; j++){
             //if (i != 2 && i != 3 && i != 6 && i != 7 && j != 2 && j != 5 && j != 6 && j != 9) {
-            if (i != 3 && i != 4 && i != 5 && i != 9 && i != 10 && i != 11 && j != 3 && j != 4 && j != 8 && j != 9 && j != 10 && j != 14 && j != 15) {
+            if (i != 3 && i != 4 && i != 5 && i != 9 && i != 10 && i != 11  && i != 15 && i != 16 && j != 3 && j != 4 && j != 8 && j != 9 && j != 10 && j != 14 && j != 15) {
 
               grid[i][j].show();
             }
@@ -357,13 +428,15 @@ var pausePressed = false;
       exitXpos = walkXpos;
       exitYpos = walkYpos;
   }
-  else if (atkBool == true && fullyGrownArray[randPosGlobal].yPos <= walkYpos-5 && is_walkYpos_heightRand_complete == false) {
+  else if (atkBool == true && fullyGrownArray[randPosGlobal].yPos <= walkYpos-4 && is_walkYpos_heightRand_complete == false) {
     if (walkXpos <= fullyGrownArray[randPosGlobal].xPos){
       walkXpos += 2;
     }
+          walkYpos-=3;
 
-    walkYpos-=3;
-    console.log(walkYpos)
+
+
+    console.log(walkYpos) //PROBLEM HERE
     exitXpos = walkXpos;
     exitYpos = walkYpos;
 
@@ -530,35 +603,60 @@ var pausePressed = false;
       avatar_carry_left.hide();
       avatar_carry_down.hide();
 
+      avatar_pour_right.hide();
+      avatar_pour_up.hide();
+      avatar_pour_left.hide();
+      avatar_pour_down.hide();
+      avatar_pour_defaultL.hide();
+      avatar_pour_defaultR.hide();
+
       avatar_spear_right.hide();
       avatar_spear_up.hide();
       avatar_spear_left.hide();
       avatar_spear_down.hide();
 
+      avatar_seedPumpkin_right.hide();
+      avatar_seedPumpkin_up.hide();
+      avatar_seedPumpkin_left.hide();
+      avatar_seedPumpkin_down.hide();
 
-      if (waterCan == false && spear == false) {
+
+      if (waterCan == false && spear == false && holdSeedPumpkin == false) {
         avatar_carry_defaultL.hide();
         avatar_carry_defaultR.hide();
         avatar_spear_defaultL.hide(); avatar_spear_defaultR.hide();
+        avatar_seedPumpkin_defaultL.hide(); avatar_seedPumpkin_defaultR.hide();
 
-        avatarMove(avatar_walk_right, avatar_walk_left, avatar_walk_up, avatar_walk_down, avatar_default, avatar_default, moveSpeed, extraXdef, extraYdef, avatar_spearAttack_defaultL, avatar_spearAttack_defaultR, avatar_spearAttack_left, avatar_spearAttack_right, avatar_spearAttack_up, avatar_spearAttack_down);
+
+        avatarMove(avatar_walk_right, avatar_walk_left, avatar_walk_up, avatar_walk_down, avatar_default, avatar_default, moveSpeed, extraXdef_L, extraXdef_R, extraYdef, avatar_spearAttack_defaultL, avatar_spearAttack_defaultR, avatar_spearAttack_left, avatar_spearAttack_right, avatar_spearAttack_up, avatar_spearAttack_down);
       } //avatar_pour_defaultL, avatar_pour_defaultR, avatar_pour_left, avatar_pour_right, avatar_pour_up, avatar_pour_down); }
-      else if (waterCan == true && spear == false) {
+      else if (waterCan == true && spear == false && holdSeedPumpkin == false) {
 
         avatar_default.hide();
         avatar_spear_defaultL.hide(); avatar_spear_defaultR.hide();
-        avatarMove(avatar_carry_right, avatar_carry_left, avatar_carry_up, avatar_carry_down, avatar_carry_defaultL, avatar_carry_defaultR, moveSpeed_can, extraXcarry, extraYcarry, avatar_pour_defaultL, avatar_pour_defaultR, avatar_pour_left, avatar_pour_right, avatar_pour_up, avatar_pour_down);
+        avatar_seedPumpkin_defaultL.hide(); avatar_seedPumpkin_defaultR.hide();
+
+        avatarMove(avatar_carry_right, avatar_carry_left, avatar_carry_up, avatar_carry_down, avatar_carry_defaultL, avatar_carry_defaultR, moveSpeed_can, extraXcarry_L, extraXcarry_R, extraYcarry, avatar_pour_defaultL, avatar_pour_defaultR, avatar_pour_left, avatar_pour_right, avatar_pour_up, avatar_pour_down);
         // if (waterCanActive == true ) {
         //   avatar_default.hide();
         //
         //   avatarMove(avatar_carry_pour, avatar_carry_left, avatar_carry_up, avatar_carry_down, avatar_carry_pour, moveSpeed_can, extraYcarry);
         // }
       }
-      if (spear == true && waterCan == false) {
+      if (spear == true && waterCan == false && holdSeedPumpkin == false) {
           avatar_carry_defaultL.hide();
           avatar_carry_defaultR.hide();
           avatar_default.hide();
-        avatarMove(avatar_spear_right, avatar_spear_left, avatar_spear_up, avatar_spear_down, avatar_spear_defaultL, avatar_spear_defaultR, moveSpeed_can, extraXspear, extraYspear, avatar_spearAttack_defaultL, avatar_spearAttack_defaultR, avatar_spearAttack_left, avatar_spearAttack_right, avatar_spearAttack_up, avatar_spearAttack_down);
+          avatar_seedPumpkin_defaultL.hide(); avatar_seedPumpkin_defaultR.hide();
+        avatarMove(avatar_spear_right, avatar_spear_left, avatar_spear_up, avatar_spear_down, avatar_spear_defaultL, avatar_spear_defaultR, moveSpeed_can, extraXspear_L, extraXspear_R, extraYspear, avatar_spearAttack_defaultL, avatar_spearAttack_defaultR, avatar_spearAttack_left, avatar_spearAttack_right, avatar_spearAttack_up, avatar_spearAttack_down);
+      }
+
+      if (holdSeedPumpkin == true && waterCan == false && spear == false) {
+          avatar_carry_defaultL.hide();
+          avatar_carry_defaultR.hide();
+          avatar_spear_defaultL.hide(); avatar_spear_defaultR.hide();
+          avatar_default.hide();
+        avatarMove(avatar_seedPumpkin_right, avatar_seedPumpkin_left, avatar_seedPumpkin_up, avatar_seedPumpkin_down, avatar_seedPumpkin_defaultL, avatar_seedPumpkin_defaultR, moveSpeed_can, extraXseedP_L, extraXseedP_R, extraYseedP, avatar_spearAttack_defaultL, avatar_spearAttack_defaultR, avatar_spearAttack_left, avatar_spearAttack_right, avatar_spearAttack_up, avatar_spearAttack_down);
       }
 
 

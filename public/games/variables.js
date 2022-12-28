@@ -12,7 +12,12 @@ var avatar_carry_left; var avatar_carry_right; var avatar_carry_down; var avatar
 
 var avatar_pour_left; var avatar_pour_right; var avatar_pour_up; var avatar_pour_down; var avatar_pour_defaultL; var avatar_pour_defaultR;
 
-
+var ui_bg;
+var ui_bar;
+var ui_pumpkin;
+var ui_spear;
+var ui_watercan;
+var ui_pumpkinseed;
 
 //sketch.js
 var canvas;
@@ -32,7 +37,8 @@ var exitYpos; //enemy starting y
 var grid;
 var m = screen.width;
 //var w = 43.5;
-var w = 29;
+
+
 
 var numcol;
 var numrow;
@@ -72,15 +78,22 @@ var avatarY = 500;
 var moveSpeed = 2.3;
 var moveSpeed_can = 1.5;
 
-var extraXdef = 0;
+var extraXdef_L = 0;
+var extraXdef_R = 0;
 var extraYdef = 0;
 
 //var extraXcarry = 20;
-var extraXcarry = 15;
+var extraXcarry_L = 10;
+var extraXcarry_R = 15;
 var extraYcarry = 15;
 
-var extraXspear = 22;
+var extraXspear_L = 40;
+var extraXspear_R = 22;
 var extraYspear = 2;
+
+var extraXseedP_L = 40;
+var extraXseedP_R = 20;
+var extraYseedP = 15;
 
 //keypressed
 var fullyGrownArray = [];
@@ -113,3 +126,101 @@ var avatar_spearAttack_up;
 var avatar_spearAttack_down;
 var avatar_spearAttack_defaultL;
 var avatar_spearAttack_defaultR;
+
+
+var holdSeedPumpkin = false;
+var holdSeedPumpkinActive = false;
+var firstClickHoldSeedPumpkin = true;
+
+var avatar_seedPumpkin_left;
+var avatar_seedPumpkin_right;
+var avatar_seedPumpkin_up;
+var avatar_seedPumpkin_down;
+var avatar_seedPumpkin_defaultL;
+var avatar_seedPumpkin_defaultR;
+
+
+function playerLayer() {
+  //screen barriers for player
+  if (avatarX < 550) {
+    avatarX = 552;
+  }
+  else if (avatarX > 1137) {
+    avatarX = 1135;
+  }
+  if (avatarY < 15) {
+    avatarY = 17;
+  }
+
+  //layer for farmer & player
+  if (walkYpos+15 <= avatarY) {
+    avatar_default.style('z-index', '10');
+    avatar_walk_down.style('z-index', '10');
+    avatar_walk_up.style('z-index', '10');
+    avatar_walk_left.style('z-index', '10');
+    avatar_walk_right.style('z-index', '10');
+
+    avatar_carry_defaultL.style('z-index', '10');
+    avatar_carry_defaultR.style('z-index', '10');
+    avatar_carry_left.style('z-index', '10');
+    avatar_carry_right.style('z-index', '10');
+    avatar_carry_up.style('z-index', '10');
+    avatar_carry_down.style('z-index', '10');
+
+    avatar_pour_defaultL.style('z-index', '10');
+    avatar_pour_defaultR.style('z-index', '10');
+    avatar_pour_left.style('z-index', '10');
+    avatar_pour_right.style('z-index', '10');
+    avatar_pour_up.style('z-index', '10');
+    avatar_pour_down.style('z-index', '10');
+
+    avatar_spear_defaultL.style('z-index', '10');
+    avatar_spear_defaultR.style('z-index', '10');
+    avatar_spear_left.style('z-index', '10');
+    avatar_spear_right.style('z-index', '10');
+    avatar_spear_up.style('z-index', '10');
+    avatar_spear_down.style('z-index', '10');
+
+    avatar_spearAttack_defaultL.style('z-index', '10');
+    avatar_spearAttack_defaultR.style('z-index', '10');
+    avatar_spearAttack_left.style('z-index', '10');
+    avatar_spearAttack_right.style('z-index', '10');
+    avatar_spearAttack_up.style('z-index', '10');
+    avatar_spearAttack_down.style('z-index', '10');
+  }
+  else {
+    avatar_default.style('z-index', '0');
+    avatar_walk_down.style('z-index', '0');
+    avatar_walk_up.style('z-index', '0');
+    avatar_walk_left.style('z-index', '0');
+    avatar_walk_right.style('z-index', '0');
+
+    avatar_carry_defaultL.style('z-index', '0');
+    avatar_carry_defaultR.style('z-index', '0');
+    avatar_carry_left.style('z-index', '0');
+    avatar_carry_right.style('z-index', '0');
+    avatar_carry_up.style('z-index', '0');
+    avatar_carry_down.style('z-index', '0');
+
+    avatar_pour_defaultL.style('z-index', '0');
+    avatar_pour_defaultR.style('z-index', '0');
+    avatar_pour_left.style('z-index', '0');
+    avatar_pour_right.style('z-index', '0');
+    avatar_pour_up.style('z-index', '0');
+    avatar_pour_down.style('z-index', '0');
+
+    avatar_spear_defaultL.style('z-index', '0');
+    avatar_spear_defaultR.style('z-index', '0');
+    avatar_spear_left.style('z-index', '0');
+    avatar_spear_right.style('z-index', '0');
+    avatar_spear_up.style('z-index', '0');
+    avatar_spear_down.style('z-index', '0');
+
+    avatar_spearAttack_defaultL.style('z-index', '0');
+    avatar_spearAttack_defaultR.style('z-index', '0');
+    avatar_spearAttack_left.style('z-index', '0');
+    avatar_spearAttack_right.style('z-index', '0');
+    avatar_spearAttack_up.style('z-index', '0');
+    avatar_spearAttack_down.style('z-index', '0');
+  }
+}
