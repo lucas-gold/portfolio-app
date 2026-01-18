@@ -338,3 +338,5 @@ var pause = false;
   if (walk == true || atkBool == false) {
     myDiv.hide();
   }
+}
+  }
