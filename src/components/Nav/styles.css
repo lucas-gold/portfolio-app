@@ -1,79 +1,165 @@
-nav {
+/* Shell holds toggle + panel positioning */
+.nav-shell {
   position: fixed;
   top: 0;
   left: 0;
-  bottom: 0;
-  width: 200px;
+  z-index: 1000;
 }
 
-.background {
+/* Backdrop overlay (click to close) */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  border: 0;
+
+  /* frosted glass */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(100px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+
+  z-index: 999;
+  cursor: pointer;
+
+  top: 18px;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+
+/* Desktop: left drawer */
+.nav-shell.desktop {
+  width: 230px;
+  height: 100vh;
+}
+
+.nav-shell.desktop .nav-panel {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
-  width: 200px;
-  background: #fff;
+  width: 230px;
+  height: 100vh;
+
+  /* frosted glass */
+  background: rgb(255, 255, 255, 0.12);
+  backdrop-filter: blur(50px);
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
-@media (max-width:570px) {
-  nav {
-    width: 150px;
-    position:inherit;
-  }
-  .background {
-    width: 180px;
-    height: 600px;
-    border-radius:15px;
-  }
+
+/* Mobile: top dropdown */
+.nav-shell.mobile {
+  width: 100vw;
+  height: 0;
 }
 
+.nav-shell.mobile .nav-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  max-height: 70vh;
+
+  /* frosted glass */
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(50px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  overflow: auto;
+  padding-top: 70px;
+}
+
+
+/* Toggle button */
 button {
   outline: none;
   border: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   top: 18px;
   left: 15px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background: transparent;
+  z-index: 1001;
 }
 
-ul,
-li {
+.nav-circle {
+  position: fixed;
+  top: 18px;
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  border: none;
+
+  /* frosted glass */
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(50px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  z-index: 1001;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.nav-circle:focus,
+.nav-circle:focus-visible,
+.nav-circle:active {
+  outline: none !important;
+}
+
+.nav-circle.nav-toggle.open {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+}
+
+.nav-toggle {
+  left: 15px;
+}
+
+.nav-home {
+  left: 80px;
+}
+
+/* Nav list */
+.nav-list {
   margin: 0;
-  padding: 0;
-}
-
-ul {
-  padding: 25px;
-  position: absolute;
-  top: 100px;
-  width: 230px;
-}
-
-li {
+  padding: 90px 24px 24px;
   list-style: none;
-  margin-bottom: 20px;
+}
+
+.nav-shell.mobile .nav-list {
+  padding: 0 24px 10px; 
+}
+
+.nav-list li {
+  margin-bottom: 28px;
+  margin-left: 8px;
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
-.icon-placeholder {
-  width: 40px;
-  height: 40px;
-  flex: 40px 0;
-  margin-right: 20px;
+.nav-icon {
+  width: 34px;
+  height: 34px;
+  margin-right: 14px;
 }
 
-.text-placeholder {
-  border-radius: 5px;
-  width: 200px;
-  height: 20px;
-  flex: 1;
+.nav-circle::-moz-focus-inner {
+  border: 0;
 }
