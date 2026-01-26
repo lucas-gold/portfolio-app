@@ -11,14 +11,21 @@ const Path = props => (
   />
 );
 
-export const Toggle = ({ toggle }) => (
-  <button onClick={toggle}>
-    <svg width="23" height="23" viewBox="0 0 23 23">
+export const Toggle = ({ toggle, isOpen }) => (
+  <button onClick={toggle} className={`nav-circle nav-toggle ${isOpen ? "open" : ""}`} aria-label="Toggle menu">
+    <motion.svg
+      width="25"
+      height="25"
+      viewBox="0 0 22 19"
+      initial={false}
+      animate={isOpen ? "open" : "closed"}
+    >
       <Path
         variants={{
           closed: { d: "M 2 2.5 L 20 2.5" },
           open: { d: "M 3 16.5 L 17 2.5" }
         }}
+        stroke="#e2e2e2"
       />
       <Path
         d="M 2 9.423 L 20 9.423"
@@ -26,6 +33,7 @@ export const Toggle = ({ toggle }) => (
           closed: { opacity: 1 },
           open: { opacity: 0 }
         }}
+        stroke="#e2e2e2"
         transition={{ duration: 0.1 }}
       />
       <Path
@@ -33,7 +41,8 @@ export const Toggle = ({ toggle }) => (
           closed: { d: "M 2 16.346 L 20 16.346" },
           open: { d: "M 3 2.5 L 17 16.346" }
         }}
+        stroke="#e2e2e2"
       />
-    </svg>
+    </motion.svg>
   </button>
 );
