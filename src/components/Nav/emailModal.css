@@ -1,0 +1,77 @@
+.emailModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.emailModalCard {
+  width: 100%;
+  max-width: 520px;
+  position: relative; 
+  border-radius: 18px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(100px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.emailModalClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;   
+  left: auto;    
+  bottom: auto;
+  border: 0;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.emailModalClose:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.emailModalTitle {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.emailModalBody {
+  margin: 10px 0 0;
+  font-family: "Space Grotesk", sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.emailModalButton {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.emailModalButton:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
