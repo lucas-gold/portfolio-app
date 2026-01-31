@@ -1,0 +1,40 @@
+export const experienceItems = [
+    {
+    id: "aboveground",
+    company: "Above Ground",
+    dates: "Mar 2025 – Jan 2026",
+    role: "AI Automation Engineer",
+    link: "https://www.abovegroundartsupplies.com",
+    bullets: [
+      "Designed, built, and shipped an AI-powered invoice extraction application in Python.",
+      "Replaced a manual invoice-processing workflow with an automated system that reduced processing time from over an hour per invoice to near-instant turnaround.",
+      "Used GPT-based extraction alongside deterministic parsing (pdfplumber) to reliably convert hundreds of vendor invoice formats into structured, system-ready data.",
+      "Built a PyQt5 desktop application with progress tracking, CSV export, and multi-threaded PDF processing with error handling.",
+      "Assisted in WordPress & PHP web development of main website."],
+    tags: ["Python", "OpenAI", "WordPress", "PHP"],
+  },
+  {
+    id: "nextgen",
+    company: "NextGen Kitchens",
+    dates: "Aug 2021 – Feb 2025",
+    role: "Software Developer",
+    link: "https://www.nextgenkitchens.com",
+    bullets: [
+      "Developed the initial MVP for a cross-platform, white-label restaurant platform using React Native, React.js, and Node.js on GCP.",
+      "Handled iOS, Android, web, kiosk, and POS deployments while guiding product direction and mentoring interns.",
+      "Designed and integrated REST APIs in a Node.js environment including Square, Stripe, Twilio, SendGrid, DoorDash Drive, and Deliverect.",
+      "Built multi-provider payment flows across Stripe, Square, Apple Pay, and Google Pay, automating multi-restaurant payouts via Stripe Connect and eliminating manual reconciliation.",
+      "Architected a real-time Firestore system using Cloud Functions, webhooks, and Python scripts to synchronize menu and order data across 40+ POS integrations.",
+    ],
+    tags: ["React Native", "React.js", "TypeScript", "Node.js", "Firebase", "GCP"],
+  },
+  {
+    id: "ryerson",
+    company: "TMU (Ryerson University)",
+    dates: "2017 – 2020",
+    role: "B.Sc. in Computer Science",
+    link: null,
+    bullets: ["Graduated with Distinction", "Dean's List 2019 & 2020", "GPA: 3.6/4.0"],
+    tags: ["CS Degree"],
+  },
+];
