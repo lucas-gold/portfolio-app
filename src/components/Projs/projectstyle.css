@@ -1,176 +1,221 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+/* Projects page updated to match Experience "glass" card style
+   (Experience styles reference: expHero/expCard in experience.css) */
 
 .pjul {
   display: flex;
   justify-content: center;
+  margin-top: 100px;
 }
 
-.desctext {
-  padding-left: 70px;
-  padding-right: 70px;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-.pjul ul,
-.pjli {
+.projList {
   list-style: none;
   margin: 0;
+  margin-bottom: 100px;
   padding: 0;
-  justify-content: center;
-  font-family: 'Montserrat', sans-serif;
+  width: min(900px, calc(100vw - 36px));
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
-.pjli:hover {
-  text-shadow: 0px 0px 0.6px black;
-}
-
-.pjul ul {
-  margin-top:-20px;
-  width: 850px;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  border-radius: 25px;
-}
-
-.pjli {
-  background-color: white;
-  border-radius: 10px;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  padding-left: 38px;
-  padding-right: 38px;
-  margin-bottom: 25px;
+.projCard {
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  backdrop-filter: blur(100px);
+  border: 1px solid rgba(255,255,255,0.10);
   overflow: hidden;
-  cursor: pointer;
+  background: rgba(255,255,255,0.08);
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
 
-.pjli:last-child {
-  margin-bottom: 75px;
+/* hover effects for non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .projCard:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-2px);
+  }
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  background-color: #666;
-  border-radius: 20px;
+.projHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
 }
 
-.row {
-  width: 100%;
-  height: 100px;
-  background-color: #999;
+.projTitleBlock {
+  min-width: 0;
+}
+
+.projNameRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.projName {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.projTags {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.projTag {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.9);
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.projActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.projIconLink {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
   border-radius: 10px;
-  margin-top: 12px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
-.h4inner {
-  margin-top: -20px;
+.projIconLink:hover {
+  background: rgba(255,255,255,0.16);
 }
 
-.imgicon {
-  filter: grayscale(100%);
-  width: 5%;
-  float:left;
+.projToggle {
+  color: rgba(255,255,255,0.9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+  user-select: none;
+}
+
+.projToggle:hover {
+  background: rgba(255,255,255,0.16);
+}
+
+.projBody {
+  margin-top: 14px;
+}
+
+.projDesc {
+  margin: 0 0 14px 0;
+  font-family: "Space Grotesk", sans-serif;
+  color: rgba(255,255,255,0.95);
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-line;
+}
+
+.projCarouselWrap {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.15);
+  height: clamp(320px, 67vh, 600px);
+}
+
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;    
+  justify-content: center;  
+}
+
+.projSlideMedia {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projSlideMedia img,
+.projSlideMedia video {
+  max-width: 100%;
+  max-height: 67vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* .projSlideMedia img,
+.projSlideMedia video {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  max-height: 600px;
+  max-width: 900px;
+  height: auto;
+} */
+
+.swiper-pagination-bullet {
+  background: #e2e2e2;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 38px;
+  height: 38px;
+  padding: 10px;
+  color:#60b5f7;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
 
-@media(max-width:1200px) {
-  .pjul ul {
-    width: 800px !important;
-    left: 250px;
-  }
-  .padder {
-    margin-left: -25px;
-  }
-
+@media (max-width: 630px) {
+  .pjul { margin-top: 70px; }
+  .projName { font-size: 20px; }
 }
 
-@media(max-width:1040px) {
-  .pjul ul {
-    width: 800px !important;
-    left: 200px;
-  }
-
+.projDesc a {
+  color: #8e11d6 !important; 
+  text-decoration: none;
 }
 
-@media(max-width:980px) {
-
-  h4 {
-    font-size: 24px !important;
-  }
-  i {
-    font-size: 26px !important;
-  }
-  .padder {
-    padding: 10px !important;
-    margin-left: 0px;
-  }
-
-  .pjul ul {
-    width: 600px !important;
-  }
-  .desctext {
-    padding-left: 0px;
-    padding-right: 0px;
-    text-align: left;
-  }
-
-  .innerpic {
-    margin-bottom: -20px !important;
-  }
-
-
-}
-
-@media(max-width:780px) {
-
-
-  i {
-    font-size: 22px !important;
-  }
-  .padder {
-    padding: 5px !important;
-  }
-
-  .pjul ul {
-    width: 450px !important;
-  }
-
-  .innerpic {
-    margin-bottom: -100px !important;
-  }
-
-}
-
-@media(max-width: 630px){
-  .pjul ul {
-    width: 360px !important;
-  }
-  h4 {
-    font-size: 16px !important;
-  }
-
-  i {
-    font-size: 18px !important;
-  }
-
-  .pjli {
-    padding-top: 60px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .innerpic {
-    margin-bottom: -130px !important;
-  }
-
-}
-
-@media(max-width: 540px){
-  .pjul ul {
-    width: 360px !important;
-    left: 162px;
-  }
-
+.projDesc a:hover {
+  color: #7a10b8 !important;
+  text-decoration: underline;
 }
