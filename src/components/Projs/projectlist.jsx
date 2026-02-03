@@ -1,8 +1,8 @@
 import * as React from "react";
 import { motion, AnimateSharedLayout } from "framer-motion";
 import { Project } from "./Project";
-import { projectData } from "./project-data";
-import "./projectstyle.css";
+import { projectData } from "./projectData";
+import "./projectStyle.css";
 
 export const ProjectList = () => (
   <AnimateSharedLayout>

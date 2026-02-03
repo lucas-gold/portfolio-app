@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useCycle } from "framer-motion";
-import { Toggle } from "./toggle";
+import { Toggle } from "./Toggle";
 import { Navigation } from "./Navigation";
 import "./styles.css";
 import { HomeButton } from "./HomeButton";

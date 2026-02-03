@@ -3,7 +3,7 @@ import "./experience.css";
 import Fade from "react-reveal/Fade";
 import { experienceItems } from "./experienceData";
 import { ExperienceCard } from "./ExperienceCard";
-import { Programs } from "./programs";
+import { Programs } from "./Programs";
 
 export function ExperiencePage() {
   return (

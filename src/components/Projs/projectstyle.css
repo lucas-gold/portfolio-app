@@ -171,16 +171,6 @@
   display: block;
 }
 
-/* .projSlideMedia img,
-.projSlideMedia video {
-  display: block;
-  margin: 0 auto;
-  width: auto;
-  max-height: 600px;
-  max-width: 900px;
-  height: auto;
-} */
-
 .swiper-pagination-bullet {
   background: #e2e2e2;
 }

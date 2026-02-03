@@ -90,7 +90,7 @@ export const projectData = [
     name: "Personal Portfolio",
     tags: ["React", "JavaScript", "Framer Motion", "CSS"],
     links: {
-      github: "https://github.com/lucas-gold/portfolio-site-V2",
+      github: "https://github.com/lucas-gold/portfolio-app",
       live: "https://lucas.gold",
     },
     description: "Crafted with React, this portfolio site features dynamic animations with Framer Motion, sleek styling with Bootstrap, and interactive elements using tsparticles. Hosted on Firebase, it highlights my technical expertise and creative flair.",
@@ -102,7 +102,7 @@ export const projectData = [
     <a href="https://lucas.gold/games/game.html" target="_blank" rel="noopener noreferrer">Link to play</a> (desktop only)
     `,
     links: {
-      github: "https://github.com/lucas-gold/portfolio-site-V2",
+      github: "https://github.com/lucas-gold/portfolio-app/tree/master/public/games",
       live: "https://lucas.gold/games/game.html",
     },
     tags: ["JavaScript", "P5.js"],
