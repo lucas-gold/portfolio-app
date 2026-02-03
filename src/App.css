@@ -66,6 +66,11 @@
   top: 0;
 }
 
+.myname,
+.myname * {
+  white-space: nowrap;
+}
+
 .myname:hover {
   color: #cd9cf2 !important;
 }
