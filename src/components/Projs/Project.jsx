@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import "./projectStyle.css";
+import "./projectstyle.css";
 
 const collapse = {
   open: { height: "auto", opacity: 1 },
