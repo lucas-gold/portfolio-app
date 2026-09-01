@@ -2,7 +2,7 @@ export const experienceItems = [
     {
     id: "aboveground",
     company: "Above Ground",
-    dates: "Mar 2025 – Jan 2026",
+    dates: "Mar 2025 – Present",
     role: "AI Automation Engineer",
     link: "https://www.abovegroundartsupplies.com",
     bullets: [
